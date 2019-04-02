@@ -14,128 +14,128 @@
         <TextView
             android:id="@+id/playerID"
             android:layout_width="match_parent"
-            android:layout_height="94dp"
+            android:layout_height="wrap_content"
             android:text="         Players"
             android:textSize="50sp" />
 
         <TextView
-            android:id="@+id/textView27"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/playerID_1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView28"
+            android:id="@+id/playerID_2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/playerID_3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView30"
+            android:id="@+id/playerID_4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView31"
+            android:id="@+id/playerID_5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView32"
+            android:id="@+id/playerID_6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView33"
+            android:id="@+id/playerID_7"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView34"
+            android:id="@+id/playerID_8"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView35"
+            android:id="@+id/playerID_9"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView36"
+            android:id="@+id/playerID_10"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView37"
+            android:id="@+id/playerID_11"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView38"
+            android:id="@+id/playerID_12"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView39"
+            android:id="@+id/playerID_13"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView40"
+            android:id="@+id/playerID_14"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView41"
+            android:id="@+id/playerID_15"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView42"
+            android:id="@+id/playerID_16"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView43"
+            android:id="@+id/playerID_17"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView44"
+            android:id="@+id/playerID_18"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/playerID_19"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/playerID_20"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
             android:text="TextView" />
 
     </LinearLayout>

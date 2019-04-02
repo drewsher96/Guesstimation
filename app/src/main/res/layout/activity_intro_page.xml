@@ -6,37 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".IntroPage">
 
-    <TextView
-        android:id="@+id/Guesstimation"
-        android:layout_width="371dp"
-        android:layout_height="126dp"
-        android:text="Guesstimation"
-        android:textSize="50sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="40dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="29dp">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="85dp"
-        android:layout_height="26dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="299dp" />
+        <TextView
+            android:id="@+id/Guesstimation"
+            android:layout_width="398dp"
+            android:layout_height="225dp"
+            android:text="  Guesstimation"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="40dp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="85dp"
-        android:layout_height="26dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="386dp" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="105dp"
+            android:text="Host Game"
+            tools:layout_editor_absoluteX="39dp"
+            tools:layout_editor_absoluteY="231dp" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="306dp"
-        android:layout_height="51dp"
-        android:text="Host Game"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="231dp" />
+        <TextView
+            android:id="@+id/userNameID"
+            android:layout_width="129dp"
+            android:layout_height="37dp"
+            android:text="Enter User Name: "
+            tools:layout_editor_absoluteX="47dp"
+            tools:layout_editor_absoluteY="386dp" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="329dp"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/sessionID"
+            android:layout_width="129dp"
+            android:layout_height="42dp"
+            android:text="Enter Session ID: "
+            tools:layout_editor_absoluteX="47dp"
+            tools:layout_editor_absoluteY="386dp" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="329dp"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
