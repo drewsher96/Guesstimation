@@ -6,4 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".AdminPage">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/displaySession"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="SESSION ID HERE"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/stopGamebtn"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:text="Stop Game"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/currentQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="CURRENT QUESTION HERE"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/stopRoundbtn"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:text="Stop Round"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/nextRoundbtn"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:text="Next Round"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/nextQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="NEXT QUESTION HERE"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
