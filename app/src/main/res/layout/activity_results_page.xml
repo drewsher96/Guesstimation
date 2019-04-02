@@ -6,4 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".ResultsPage">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/results"
+            android:layout_width="match_parent"
+            android:layout_height="165dp"
+            android:text="RESULTS"
+            android:textSize="85sp" />
+
+        <TextView
+            android:id="@+id/firstPlace"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="1st Place: User - Points"
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/secondPlace"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="2nd Place: User - Points"
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/thirdPlace"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="3rd Place: User - Points"
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/finalPoints"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:text="User - Points"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/homeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="98dp"
+            android:text="Home"
+            android:textSize="36sp" />
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
