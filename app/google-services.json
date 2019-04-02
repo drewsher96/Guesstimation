@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "952194121097",
+    "firebase_url": "https://guesstimation-445f5.firebaseio.com",
+    "project_id": "guesstimation-445f5",
+    "storage_bucket": "guesstimation-445f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952194121097:android:b51513c45d263c04",
+        "android_client_info": {
+          "package_name": "com.example.amsher.guesstimation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952194121097-kcqhiihuu0f8qut423o9ii85vjopim6v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.amsher.guesstimation",
+            "certificate_hash": "839aee00215e60c53644cf8b2029fcd5cfd11599"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOhYvF-s0Ci2GuAqW6m6oTfE70p0cBnro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952194121097-vn2b4prm0pjnafvdjfm9thcdrbpqnrf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
