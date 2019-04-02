@@ -35,31 +35,35 @@
 
         <TextView
             android:id="@+id/userNameID"
-            android:layout_width="129dp"
+            android:layout_width="match_parent"
             android:layout_height="37dp"
             android:text="Enter User Name: "
+            android:textSize="24sp"
             tools:layout_editor_absoluteX="47dp"
             tools:layout_editor_absoluteY="386dp" />
 
         <TextView
             android:id="@+id/textView21"
-            android:layout_width="329dp"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:text="TextView"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/sessionID"
-            android:layout_width="129dp"
+            android:layout_width="match_parent"
             android:layout_height="42dp"
             android:text="Enter Session ID: "
+            android:textSize="24sp"
             tools:layout_editor_absoluteX="47dp"
             tools:layout_editor_absoluteY="386dp" />
 
         <TextView
             android:id="@+id/textView23"
-            android:layout_width="329dp"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="TextView"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
