@@ -6,164 +6,137 @@
     android:layout_height="match_parent"
     tools:context=".JoinPage">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="182dp"
-        android:layout_height="61dp"
-        android:text="Players"
-        android:textSize="36sp"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="31dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="403dp" />
+        <TextView
+            android:id="@+id/playerID"
+            android:layout_width="match_parent"
+            android:layout_height="94dp"
+            android:text="         Players"
+            android:textSize="50sp" />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="403dp" />
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="434dp" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="186dp" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="372dp" />
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="341dp" />
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="315dp" />
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="284dp" />
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="253dp" />
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="217dp" />
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="186dp" />
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="217dp" />
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="248dp" />
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="284dp" />
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="310dp" />
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="341dp" />
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="372dp" />
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="403dp" />
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="123dp"
-        android:layout_height="31dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="434dp" />
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
