@@ -1,5 +1,6 @@
 package com.example.amsher.guesstimation;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,12 +23,18 @@ public class IntroPage extends AppCompatActivity {
         input = (EditText) findViewById(R.id.editText1);
         String host = input.getText().toString();
 
+        Intent intent = new Intent(getApplicationContext(),AdminPage.class);
+        startActivity(intent);
+
 
     }
 
     protected void onJoinClick (View v) {
         input = (EditText) findViewById(R.id.editText2);
         String join = input.getText().toString();
+
+        Intent intent = new Intent(getApplicationContext(),JoinPage.class);
+        startActivity(intent);
 
 
     }
