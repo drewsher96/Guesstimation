@@ -33,7 +33,7 @@ public class IntroPage extends AppCompatActivity {
         input = (EditText) findViewById(R.id.editText2);
         String join = input.getText().toString();
 
-        Intent intent = new Intent(getApplicationContext(),JoinPage.class);
+        Intent intent = new Intent(getApplicationContext(),GamePage.class);
         startActivity(intent);
 
 
