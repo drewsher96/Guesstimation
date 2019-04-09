@@ -16,13 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".JoinPage"
-            android:label="@string/title_activity_join_page"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AdminPage" />
         <activity android:name=".GamePage" />
-        <activity android:name=".ResultsPage"></activity>
+        <activity android:name=".ResultsPage">
+        </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
