@@ -11,6 +11,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/readyIn"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:onClick="onReadyClick"
+            android:text="Ready for Round" />
+
         <TextView
             android:id="@+id/currentPoints"
             android:layout_width="match_parent"
@@ -28,16 +35,37 @@
         <TextView
             android:id="@+id/gameQuestion"
             android:layout_width="match_parent"
-            android:layout_height="254dp"
+            android:layout_height="146dp"
             android:text="Current Question"
             android:textSize="36sp" />
 
-        <TextView
-            android:id="@+id/userAnswer"
+        <RadioButton
+            android:id="@+id/questionAnswer1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="User Answer"
-            android:textSize="24sp" />
+            android:onClick="onReadyClick"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/questionAnswer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onReadyClick"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/questionAnswer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onReadyClick"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/questionAnswer4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onReadyClick"
+            android:text="RadioButton" />
 
         <Button
             android:id="@+id/lockInbtn"
