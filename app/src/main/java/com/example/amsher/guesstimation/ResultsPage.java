@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ResultsPage extends AppCompatActivity {
 
@@ -22,6 +24,11 @@ public class ResultsPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_page);
+
+        Firebase.setAndroidContext(this);
+        mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
+
+        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
     }
 
     protected void onHomeClick (View v) {
