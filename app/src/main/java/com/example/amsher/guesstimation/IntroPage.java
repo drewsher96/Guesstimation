@@ -70,7 +70,7 @@ public class IntroPage extends AppCompatActivity {
         mRefInstanceScore = mRefInstance.child("Score");
         mRefInstanceScore.setValue(score);
 
-        Intent intent1 = new Intent(getApplicationContext(), GamePage.class);
+        Intent intent1 = new Intent(getApplicationContext(), ResultsPage.class);
         startActivity(intent1);
     }
 }

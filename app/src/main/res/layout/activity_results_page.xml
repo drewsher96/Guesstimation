@@ -85,6 +85,7 @@
             android:id="@+id/homeBtn"
             android:layout_width="match_parent"
             android:layout_height="98dp"
+            android:onClick="onHomeClick"
             android:text="Home"
             android:textSize="36sp" />
 
