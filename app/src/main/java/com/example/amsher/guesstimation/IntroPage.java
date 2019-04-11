@@ -21,7 +21,6 @@ import java.util.Map;
 
 public class IntroPage extends AppCompatActivity {
 
-    private Button mButton;
     private EditText userID;
     private EditText gameID;
 
@@ -29,17 +28,15 @@ public class IntroPage extends AppCompatActivity {
     public Firebase mRefInstance;
     public Firebase mRefInstanceUser;
     public Firebase mRefInstanceReady;
+    public Firebase mRefInstanceScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_page);
 
-
-        mButton = (Button) findViewById(R.id.button);
         userID = (EditText) findViewById(R.id.editText1);
         gameID = (EditText) findViewById(R.id.editText2);
-
     }
 
     protected void onHostClick (View v) {
@@ -64,9 +61,14 @@ public class IntroPage extends AppCompatActivity {
         String uValue = userID.getText().toString();
         String gValue = gameID.getText().toString();
         int score = 0;
-        boolean ready = false;
+        int ready = 0;
 
         mRefInstance = mRef.child(gValue).child(uValue);
+        mRefInstanceReady = mRefInstance.child("Ready");
+        mRefInstanceReady.setValue(ready);
+
+        mRefInstanceScore = mRefInstance.child("Score");
+        mRefInstanceScore.setValue(score);
 
         Intent intent1 = new Intent(getApplicationContext(), GamePage.class);
         startActivity(intent1);

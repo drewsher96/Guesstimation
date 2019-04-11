@@ -19,24 +19,24 @@
             android:text="Ready for Round" />
 
         <TextView
-            android:id="@+id/currentPoints"
+            android:id="@+id/playerCountTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current Points: "
+            android:text="Players Numbers"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/questionNum"
+            android:id="@+id/statusTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Question Number:"
+            android:text="Player Ready?"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/gameQuestion"
             android:layout_width="match_parent"
             android:layout_height="146dp"
-            android:text="Current Question"
+            android:text="How tall is the statue of liberty in feet?"
             android:textSize="36sp" />
 
         <RadioButton
@@ -44,28 +44,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onReadyClick"
-            android:text="RadioButton" />
+            android:text="305" />
 
         <RadioButton
             android:id="@+id/questionAnswer2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onReadyClick"
-            android:text="RadioButton" />
+            android:text="300" />
 
         <RadioButton
             android:id="@+id/questionAnswer3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onReadyClick"
-            android:text="RadioButton" />
+            android:text="260" />
 
         <RadioButton
             android:id="@+id/questionAnswer4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onReadyClick"
-            android:text="RadioButton" />
+            android:text="412" />
 
         <Button
             android:id="@+id/lockInbtn"
