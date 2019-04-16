@@ -5,6 +5,7 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -12,6 +13,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
 import java.util.Random;
@@ -19,10 +22,11 @@ import java.util.Set;
 
 public class GamePage extends AppCompatActivity {
     public Firebase mRef;
+    public DatabaseReference mDatabase;
     public Firebase mRefInstance;
     public Firebase mRefInstanceUser;
     public Firebase mRefInstanceReady;
-    String gameSessionID = "1"; //Need to pull real Session ID
+    public String gameSessionID; //Need to pull real Session ID
     int NumOfPlayers;
     int AllReady;
     String playerID;
@@ -30,11 +34,16 @@ public class GamePage extends AppCompatActivity {
     TextView statusTV;
 
     private TextView gameQuestion;
+    private Button lockInBtn;
     private RadioButton questionAnswer1;
     private RadioButton questionAnswer2;
     private RadioButton questionAnswer3;
     private RadioButton questionAnswer4;
     int count = 1;
+    String newStatus = "0";
+
+
+    //String gameID = intent1.getStringExtra("gameID");
 
     String[] qArray = {"How tall is the statue of liberty in feet?","What is the population of Oklahoma in Millions?","How many days are in the average school year?",
             "What is the average airspeed velocity of an unladen African swallow in MPH?","How many Super Bowls have the New England Patriots won?",
@@ -61,17 +70,34 @@ public class GamePage extends AppCompatActivity {
         questionAnswer4 = (RadioButton)findViewById(R.id.questionAnswer4);
         playerCountTV = findViewById(R.id.playerCountTV);
         statusTV = findViewById(R.id.statusTV);
+        lockInBtn = findViewById(R.id.lockInBtn);
+        gameSessionID = getIntent().getStringExtra(IntroPage.Extra_String);
 
+        getPlayerStatus();
 
+        lockInBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                setStatusTo(newStatus);
+            }
+        });
+    }
+
+    protected void onLockinClick(View v){
+        newStatus = "1";
     }
 
     public void getPlayerStatus(){
-        mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
+        mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game/" + gameSessionID);
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
-                if(gameSessionID.equals(map.get("SessionID"))){
+                System.out.println(map);
+                //GET RID OF IF ELSE STATEMENT
+                //ADD ARRAY OF MAP VALUES TO INTRO PAGE
+                //CHECK GAME ID AGAINST THAT BEFORE MOVING ON
+                if(gameSessionID.equals(map.get(gameSessionID))){
                     Set players = map.entrySet();
 
                     NumOfPlayers = players.size() - 1;
@@ -117,6 +143,46 @@ public class GamePage extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void startNextRound(){
+
+    }
+
+    public void getPlayerCount() {
+        mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
+                System.out.println(map);
+
+                if(gameSessionID.equals(map.get("SessionID"))){
+                    Set players = map.entrySet();
+
+                    NumOfPlayers = players.size() -1;
+                    System.out.println("Number of Players: " + NumOfPlayers);
+                    playerCountTV.setText("Players: " + Integer.toString(NumOfPlayers));
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
+    public void setStatusTo(String newStatus){
+        if(newStatus == "1") {
+            Intent intent1 = new Intent(getApplicationContext(), ResultsPage.class);
+            startActivity(intent1);
+        }
+        else {
+
+        }
     }
 
 
