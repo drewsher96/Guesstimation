@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 import com.google.firebase.database.DatabaseReference;
@@ -19,16 +20,25 @@ public class ResultsPage extends AppCompatActivity {
     public Firebase mRefInstanceScore1;
     public Firebase mRefInstanceScore2;
     public Firebase mRefInstanceScore3;
+    private String rgameID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_page);
 
+        rgameID = getIntent().getStringExtra(IntroPage.Extra_String);
+
         Firebase.setAndroidContext(this);
         mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
 
-        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+        /*DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ref = dataRef.child("Game").child(gameID);*/
+
+        TextView tw = (TextView) findViewById(R.id.textView4);
+        tw.setText(rgameID);
+
+
     }
 
     protected void onHomeClick (View v) {
