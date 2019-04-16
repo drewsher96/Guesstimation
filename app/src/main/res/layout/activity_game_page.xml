@@ -71,6 +71,7 @@
             android:id="@+id/lockInBtn"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:onClick="onLockinClick"
             android:text="Lock In!"
             android:textSize="36sp" />
     </LinearLayout>

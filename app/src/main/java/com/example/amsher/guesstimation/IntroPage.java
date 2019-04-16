@@ -55,6 +55,8 @@ public class IntroPage extends AppCompatActivity {
         mRefInstanceUser.setValue(uValue);
 
         Intent intent1 = new Intent(getApplicationContext(), AdminPage.class);
+
+        intent1.putExtra(Extra_String, gValue);
         startActivity(intent1);
     }
 
