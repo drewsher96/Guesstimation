@@ -70,7 +70,7 @@ public class GamePage extends AppCompatActivity {
         questionAnswer4 = (RadioButton)findViewById(R.id.questionAnswer4);
         playerCountTV = findViewById(R.id.playerCountTV);
         statusTV = findViewById(R.id.statusTV);
-        lockInBtn = findViewById(R.id.lockInbtn);
+        lockInBtn = findViewById(R.id.lockInBtn);
         gameSessionID = getIntent().getStringExtra(IntroPage.Extra_String);
 
         getPlayerStatus();
