@@ -68,7 +68,7 @@
             android:text="412" />
 
         <Button
-            android:id="@+id/lockInbtn"
+            android:id="@+id/lockInBtn"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:text="Lock In!"

@@ -22,7 +22,11 @@ import java.util.Map;
 public class IntroPage extends AppCompatActivity {
 
     private EditText userID;
-    private EditText gameID;
+    public EditText gameID;
+    public String uValue;
+    public String gValue;
+    public static String Extra_String;
+
 
     public Firebase mRef;
     public Firebase mRefInstance;
@@ -43,8 +47,8 @@ public class IntroPage extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
 
-        String uValue = userID.getText().toString();
-        String gValue = gameID.getText().toString();
+        uValue = userID.getText().toString();
+        gValue = gameID.getText().toString();
 
         mRefInstance = mRef.child(gValue);
         mRefInstanceUser = mRefInstance.child("Host");
@@ -58,8 +62,8 @@ public class IntroPage extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
 
-        String uValue = userID.getText().toString();
-        String gValue = gameID.getText().toString();
+        uValue = userID.getText().toString();
+        gValue = gameID.getText().toString();
         int score = 0;
         int ready = 0;
 
@@ -70,7 +74,12 @@ public class IntroPage extends AppCompatActivity {
         mRefInstanceScore = mRefInstance.child("Score");
         mRefInstanceScore.setValue(score);
 
-        Intent intent1 = new Intent(getApplicationContext(), GamePage.class);
-        startActivity(intent1);
+        Intent intentGame = new Intent(getApplicationContext(), GamePage.class);
+
+        //Intent intent2 = new Intent(this, GamePage.class);
+        intentGame.putExtra(Extra_String, gValue);
+        startActivity(intentGame);
+
+
     }
 }
