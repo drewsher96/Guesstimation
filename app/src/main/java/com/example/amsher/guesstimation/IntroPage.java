@@ -26,6 +26,7 @@ public class IntroPage extends AppCompatActivity {
     public String uValue;
     public String gValue;
     public static String Extra_String;
+    public static String Extra_StringU;
 
 
     public Firebase mRef;
@@ -76,10 +77,11 @@ public class IntroPage extends AppCompatActivity {
         mRefInstanceScore = mRefInstance.child("Score");
         mRefInstanceScore.setValue(score);
 
-        Intent intentGame = new Intent(getApplicationContext(), GamePage.class);
+        Intent intentGame = new Intent(this, GamePage.class);
 
-        //Intent intent2 = new Intent(this, GamePage.class);
-        intentGame.putExtra(Extra_String, gValue);
+        //New way to pass extra strings, it allows you to carry over two strings in one intent without the app getting them mixed up
+        intentGame.putExtra("GameID", gValue);
+        intentGame.putExtra("UserName", uValue);
         startActivity(intentGame);
 
 

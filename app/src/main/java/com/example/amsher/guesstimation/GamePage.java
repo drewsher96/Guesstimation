@@ -27,6 +27,8 @@ public class GamePage extends AppCompatActivity {
     public Firebase mRefInstanceUser;
     public Firebase mRefInstanceReady;
     public String gameSessionID; //Need to pull real Session ID
+    public static String ExtraStringU;
+    String userName;
     int NumOfPlayers;
     int AllReady;
     String playerID;
@@ -62,7 +64,6 @@ public class GamePage extends AppCompatActivity {
         setContentView(R.layout.activity_game_page);
 
 
-
         gameQuestion = (TextView)findViewById(R.id.gameQuestion);
         questionAnswer1 = (RadioButton)findViewById(R.id.questionAnswer1);
         questionAnswer2 = (RadioButton)findViewById(R.id.questionAnswer2);
@@ -71,7 +72,11 @@ public class GamePage extends AppCompatActivity {
         playerCountTV = findViewById(R.id.playerCountTV);
         statusTV = findViewById(R.id.statusTV);
         lockInBtn = findViewById(R.id.lockInBtn);
-        gameSessionID = getIntent().getStringExtra(IntroPage.Extra_String);
+
+        //this is the new way to get the extra strings when there is more than one string to be passed, the way its set up is on the intro page.
+        Bundle extras = getIntent().getExtras();
+        gameSessionID = extras.getString("GameID");
+        userName = extras.getString("UserName");
 
         getPlayerStatus();
 
@@ -187,8 +192,6 @@ public class GamePage extends AppCompatActivity {
 
 
     protected void onReadyClick (View v){
-
-
         String question = qArray[count];
         String answer1 = aArray[count][0];
         String answer2 = aArray[count][1];
@@ -202,6 +205,7 @@ public class GamePage extends AppCompatActivity {
         count++;
         if(count == qArray.length){
             Intent intent1 = new Intent(getApplicationContext(), ResultsPage.class);
+            intent1.putExtra(ExtraStringU, userName);
             startActivity(intent1);
         }
 
