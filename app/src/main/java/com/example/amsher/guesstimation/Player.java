@@ -3,14 +3,18 @@ package com.example.amsher.guesstimation;
 public class Player {
 
     public String playerID;
-    public String status;
+    public String ready;
+    public int score;
+    public String name;
 
 //    public Player() {
 //        // Default constructor required for calls to DataSnapshot.getValue(User.class)
 //    }
 
-    public Player(String id) {
+    public Player(String id, String name) {
         this.playerID = id;
-        this.status = "0";
+        this.ready = "0";
+        this.score = 0;
+        this.name = name;
     }
 }

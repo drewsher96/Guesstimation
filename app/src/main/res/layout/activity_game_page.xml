@@ -11,19 +11,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/readyIn"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:onClick="onReadyClick"
-            android:text="Ready for Round" />
-
-        <TextView
-            android:id="@+id/playerCountTV"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Players Numbers"
-            android:textSize="18sp" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:text="# of Players:"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/playerCountTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/statusTV"
@@ -43,28 +49,24 @@
             android:id="@+id/questionAnswer1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onReadyClick"
             android:text="305" />
 
         <RadioButton
             android:id="@+id/questionAnswer2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onReadyClick"
             android:text="300" />
 
         <RadioButton
             android:id="@+id/questionAnswer3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onReadyClick"
             android:text="260" />
 
         <RadioButton
             android:id="@+id/questionAnswer4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onReadyClick"
             android:text="412" />
 
         <Button

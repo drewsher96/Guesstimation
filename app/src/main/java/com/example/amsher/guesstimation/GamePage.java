@@ -76,9 +76,9 @@ public class GamePage extends AppCompatActivity {
         //this is the new way to get the extra strings when there is more than one string to be passed, the way its set up is on the intro page.
         Bundle extras = getIntent().getExtras();
         gameSessionID = extras.getString("GameID");
-        userName = extras.getString("UserName");
+        userName = extras.getString("UserID");
 
-        getPlayerStatus();
+        // getPlayerStatus();
 
         lockInBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -90,6 +90,7 @@ public class GamePage extends AppCompatActivity {
 
     protected void onLockinClick(View v){
         newStatus = "1";
+        startNextRound();
     }
 
     public void getPlayerStatus(){
@@ -102,44 +103,34 @@ public class GamePage extends AppCompatActivity {
                 //GET RID OF IF ELSE STATEMENT
                 //ADD ARRAY OF MAP VALUES TO INTRO PAGE
                 //CHECK GAME ID AGAINST THAT BEFORE MOVING ON
-                if(gameSessionID.equals(map.get(gameSessionID))){
-                    Set players = map.entrySet();
+                Set players = map.entrySet();
 
-                    NumOfPlayers = players.size() - 1;
-                    System.out.println("Number of Players: " + NumOfPlayers);
-                    playerCountTV.setText("Players: " + Integer.toString(NumOfPlayers));
+                NumOfPlayers = players.size() - 1;
+                System.out.println("Number of Players: " + NumOfPlayers);
+                playerCountTV.setText("Players: " + Integer.toString(NumOfPlayers));
 
 
-                    int MotherStatus = 1;
-                    for(int i = 1; i < NumOfPlayers+1; i++){
-                        Map<String, String> statusMap = map.get("Player"+i);
-                        System.out.println("matchMap: " + statusMap);
-                        String status = null;
-                        if(statusMap.containsKey("Status")){
-                            status = statusMap.get("Status");
-                            System.out.println("Value from Map: " + status);
-                            MotherStatus = MotherStatus * Integer.parseInt(status);
-                        }
-
-                        System.out.println("MotherStatus: " + MotherStatus);
-                        if (i == NumOfPlayers && MotherStatus == 1){
-                            statusTV.setText("All Players Are Ready");
-                            AllReady = MotherStatus;
-                            break;
-                        }
-                        else if(i == NumOfPlayers && MotherStatus == 0){
-                            System.out.println("Waiting on Players...");
-                            statusTV.setText("Waiting on Players...");
-                        }
+                int MotherStatus = 1;
+                for(int i = 1; i < NumOfPlayers+1; i++){
+                    Map<String, String> statusMap = map.get(userName);
+                    System.out.println("matchMap: " + statusMap);
+                    String status = null;
+                    if(statusMap.containsKey("Ready")){
+                        status = statusMap.get("Ready");
+                        System.out.println("Value from Map: " + status);
+                        MotherStatus = MotherStatus * Integer.parseInt(status);
                     }
-                }
 
-                else{
-                    statusTV.setText("Wrong Session");
-                    Set players = map.entrySet();
-                    NumOfPlayers = players.size() -1;
-                    System.out.println("Number of Players: " + NumOfPlayers);
-                    playerCountTV.setText("Players: " + Integer.toString(NumOfPlayers));
+                    System.out.println("MotherStatus: " + MotherStatus);
+                    if (i == NumOfPlayers && MotherStatus == 1){
+                        statusTV.setText("All Players Are Ready");
+                        AllReady = MotherStatus;
+                        break;
+                    }
+                    else if(i == NumOfPlayers && MotherStatus == 0){
+                        System.out.println("Waiting on Players...");
+                        statusTV.setText("Waiting on Players...");
+                    }
                 }
             }
 
@@ -151,7 +142,24 @@ public class GamePage extends AppCompatActivity {
     }
 
     public void startNextRound(){
-
+        if(AllReady == 1) {
+            String question = qArray[count];
+            String answer1 = aArray[count][0];
+            String answer2 = aArray[count][1];
+            String answer3 = aArray[count][2];
+            String answer4 = aArray[count][3];
+            gameQuestion.setText(question);
+            questionAnswer1.setText(answer1);
+            questionAnswer2.setText(answer2);
+            questionAnswer3.setText(answer3);
+            questionAnswer4.setText(answer4);
+            count++;
+            if(count == qArray.length){
+                Intent intent1 = new Intent(getApplicationContext(), ResultsPage.class);
+                intent1.putExtra(ExtraStringU, userName);
+                startActivity(intent1);
+            }
+        }
     }
 
     public void getPlayerCount() {
@@ -182,33 +190,10 @@ public class GamePage extends AppCompatActivity {
 
     public void setStatusTo(String newStatus){
         if(newStatus == "1") {
-            Intent intent1 = new Intent(getApplicationContext(), ResultsPage.class);
-            startActivity(intent1);
+
         }
         else {
 
         }
-    }
-
-
-    protected void onReadyClick (View v){
-        String question = qArray[count];
-        String answer1 = aArray[count][0];
-        String answer2 = aArray[count][1];
-        String answer3 = aArray[count][2];
-        String answer4 = aArray[count][3];
-        gameQuestion.setText(question);
-        questionAnswer1.setText(answer1);
-        questionAnswer2.setText(answer2);
-        questionAnswer3.setText(answer3);
-        questionAnswer4.setText(answer4);
-        count++;
-        if(count == qArray.length){
-            Intent intent1 = new Intent(getApplicationContext(), ResultsPage.class);
-            intent1.putExtra(ExtraStringU, userName);
-            startActivity(intent1);
-        }
-
-
     }
 }
