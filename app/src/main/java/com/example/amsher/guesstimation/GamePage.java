@@ -17,21 +17,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 
 public class GamePage extends AppCompatActivity {
     public Firebase mRef;
-    public DatabaseReference mDatabase;
-    public Firebase mRefInstance;
-    public Firebase mRefInstanceUser;
-    public Firebase mRefInstanceReady;
+    public DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    public DatabaseReference mGameRef = mRootRef.child("Game");
+    public DatabaseReference mUserRef;
     public String gameSessionID; //Need to pull real Session ID
     public static String ExtraStringU;
+    private Intent intentGame;
+    public Bundle extras;
     public String userID;
     int NumOfPlayers;
     int AllReady;
-    String playerID;
+    public int roundCount;
     TextView playerCountTV;
     TextView statusTV;
 
@@ -41,8 +41,6 @@ public class GamePage extends AppCompatActivity {
     private RadioButton questionAnswer2;
     private RadioButton questionAnswer3;
     private RadioButton questionAnswer4;
-    int count = 1;
-    String newStatus = "0";
 
 
     //String gameID = intent1.getStringExtra("gameID");
@@ -62,13 +60,11 @@ public class GamePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_page);
-
-
-        gameQuestion = (TextView)findViewById(R.id.gameQuestion);
-        questionAnswer1 = (RadioButton)findViewById(R.id.questionAnswer1);
-        questionAnswer2 = (RadioButton)findViewById(R.id.questionAnswer2);
-        questionAnswer3 = (RadioButton)findViewById(R.id.questionAnswer3);
-        questionAnswer4 = (RadioButton)findViewById(R.id.questionAnswer4);
+        gameQuestion = (TextView) findViewById(R.id.gameQuestion);
+        questionAnswer1 = (RadioButton) findViewById(R.id.questionAnswer1);
+        questionAnswer2 = (RadioButton) findViewById(R.id.questionAnswer2);
+        questionAnswer3 = (RadioButton) findViewById(R.id.questionAnswer3);
+        questionAnswer4 = (RadioButton) findViewById(R.id.questionAnswer4);
         playerCountTV = findViewById(R.id.playerCountTV);
         statusTV = findViewById(R.id.statusTV);
         lockInBtn = findViewById(R.id.lockInBtn);
@@ -78,14 +74,13 @@ public class GamePage extends AppCompatActivity {
         Bundle extras = intentGame.getExtras();
         gameSessionID = extras.getString("GameID");
         userID = extras.getString("UserID");
-
-        getPlayerCount();
+        mUserRef = mGameRef.child(gameSessionID).child(userID);
+        mUserRef.child("Ready").setValue("0");
     }
 
     protected void onLockinClick(View v){
-        newStatus = "1";
+        mUserRef.child("Ready").setValue("1");
         getPlayerStatus();
-        startNextRound();
     }
 
     public void getPlayerStatus(){
@@ -95,10 +90,20 @@ public class GamePage extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
                 System.out.println(map);
-                //GET RID OF IF ELSE STATEMENT
-                //ADD ARRAY OF MAP VALUES TO INTRO PAGE
-                //CHECK GAME ID AGAINST THAT BEFORE MOVING ON
+
                 Set players = map.entrySet();
+
+                if(!players.isEmpty()){
+                    NumOfPlayers = players.size() -1;
+                    System.out.println("### PLAYER COUNT ###");
+                    System.out.println("         " + NumOfPlayers);
+                    System.out.println("####################");
+
+                    playerCountTV.setText(Integer.toString(NumOfPlayers));
+                }
+                else {
+                    System.out.println("No Players Found");
+                }
 
                 NumOfPlayers = players.size() - 1;
                 System.out.println("Number of Players: " + NumOfPlayers);
@@ -106,23 +111,23 @@ public class GamePage extends AppCompatActivity {
 
 
                 int MotherStatus = 1;
-                for(int i = 1; i < NumOfPlayers+1; i++){
+                for(int i = 1; i < NumOfPlayers+1; i++) {
                     Map<String, String> statusMap = map.get(userID);
                     System.out.println("matchMap: " + statusMap);
                     String status = null;
-                    if(statusMap.containsKey("Ready")){
+                    if (statusMap.containsKey("Ready")) {
                         status = statusMap.get("Ready");
                         System.out.println("Value from Map: " + status);
                         MotherStatus = MotherStatus * Integer.parseInt(status);
                     }
 
                     System.out.println("MotherStatus: " + MotherStatus);
-                    if (i == NumOfPlayers && MotherStatus == 1){
+                    if (i == NumOfPlayers && MotherStatus == 1) {
                         statusTV.setText("All Players Are Ready");
                         AllReady = MotherStatus;
+                        startNextRound();
                         break;
-                    }
-                    else if(i == NumOfPlayers && MotherStatus == 0){
+                    } else if (i == NumOfPlayers && MotherStatus == 0) {
                         System.out.println("Waiting on Players...");
                         statusTV.setText("Waiting on Players...");
                     }
@@ -137,6 +142,8 @@ public class GamePage extends AppCompatActivity {
     }
 
     public void startNextRound(){
+        int count = 1;
+
         if(AllReady == 1) {
             String question = qArray[count];
             String answer1 = aArray[count][0];
@@ -149,56 +156,23 @@ public class GamePage extends AppCompatActivity {
             questionAnswer3.setText(answer3);
             questionAnswer4.setText(answer4);
             count++;
-            if(count == qArray.length){
-                Intent intent1 = new Intent(getApplicationContext(), ResultsPage.class);
-                intent1.putExtra(ExtraStringU, userID);
-                startActivity(intent1);
-            }
-        }
-    }
 
-    public void getPlayerCount() {
-        String url = "https://guesstimation-445f5.firebaseio.com/Game/" + gameSessionID;
-        System.out.println("Firebase URL: " + url);
-        mRef = new Firebase(url);
+            mUserRef.child("Ready").setValue("0");
 
-        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            if(count == qArray.length) {
+                Intent intent2 = new Intent(getApplicationContext(), ResultsPage.class);
+                intent2.putExtra(ExtraStringU, userID);
+                startActivity(intent2);
+            } /*else {
+                intentGame = new Intent(getApplicationContext(), GamePage.class);
+                extras = new Bundle();
+                extras.putInt("Count", count);
+                extras.putString("UserID", userID);
+                extras.putString("GameID", gameSessionID);
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
-                System.out.println(map);
-
-                // Pull all children in the game object and place them in a Set variable
-                Set players = map.entrySet();
-
-                if(!players.isEmpty()){
-                    NumOfPlayers = players.size();
-                    System.out.println("### PLAYER COUNT ###");
-                    System.out.println("         " + NumOfPlayers);
-                    System.out.println("####################");
-
-                    playerCountTV.setText(Integer.toString(NumOfPlayers));
-                }
-                else {
-                    System.out.println("No Players Found");
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-
-        });
-    }
-
-    public void setStatusTo(String newStatus){
-        if(newStatus == "1") {
-
-        }
-        else {
-
+                intentGame.putExtras(extras);
+                startActivity(intentGame);
+            }*/
         }
     }
 }
