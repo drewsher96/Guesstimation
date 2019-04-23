@@ -78,7 +78,8 @@ public class GamePage extends AppCompatActivity {
         gameSessionID = extras.getString("GameID");
         userName = extras.getString("UserID");
 
-        // getPlayerStatus();
+        getPlayerCount();
+        //getPlayerStatus();
 
         lockInBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -107,7 +108,7 @@ public class GamePage extends AppCompatActivity {
 
                 NumOfPlayers = players.size() - 1;
                 System.out.println("Number of Players: " + NumOfPlayers);
-                playerCountTV.setText("Players: " + Integer.toString(NumOfPlayers));
+                playerCountTV.setText(Integer.toString(NumOfPlayers));
 
 
                 int MotherStatus = 1;
@@ -163,28 +164,38 @@ public class GamePage extends AppCompatActivity {
     }
 
     public void getPlayerCount() {
-        mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        String url = "https://guesstimation-445f5.firebaseio.com/Game/" + gameSessionID;
+        System.out.println("Firebase URL: " + url);
+        mRef = new Firebase(url);
 
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
                 System.out.println(map);
 
-                if(gameSessionID.equals(map.get("SessionID"))){
-                    Set players = map.entrySet();
+                // Pull all children in the game object and place them in a Set variable
+                Set players = map.entrySet();
 
-                    NumOfPlayers = players.size() -1;
-                    System.out.println("Number of Players: " + NumOfPlayers);
-                    playerCountTV.setText("Players: " + Integer.toString(NumOfPlayers));
+                if(!players.isEmpty()){
+                    NumOfPlayers = players.size();
+                    System.out.println("### PLAYER COUNT ###");
+                    System.out.println("         " + NumOfPlayers);
+                    System.out.println("####################");
+
+                    playerCountTV.setText(Integer.toString(NumOfPlayers));
+                }
+                else {
+                    System.out.println("No Players Found");
                 }
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-
             }
+
         });
     }
 

@@ -127,12 +127,9 @@ public class IntroPage extends AppCompatActivity {
         // (Hint: Write a method for updating the status).
         uValue = player.playerID;
         intentGame.putExtra("UserID", uValue);
-
     }
 
     public void getPlayerCount() {
-
-
         String url = "https://guesstimation-445f5.firebaseio.com/Game/" + gValue;
         System.out.println("Firebase URL: " + url);
         mRef = new Firebase(url);
