@@ -33,6 +33,7 @@ public class IntroPage extends AppCompatActivity {
     public String gValue;
     public String userName;
     private Intent intentGame;
+    public Bundle extras;
     public static String Extra_String;
     public static String Extra_StringU;
 
@@ -56,6 +57,7 @@ public class IntroPage extends AppCompatActivity {
         HostBtn = findViewById(R.id.button);
 
         intentGame = new Intent(getApplicationContext(), GamePage.class);
+        extras = new Bundle();
 
         JoinBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -95,18 +97,11 @@ public class IntroPage extends AppCompatActivity {
     }
 
     protected void onJoinClick () {
-
         NumOfPlayers = 0;
         userName = userID.getText().toString();
         gValue = gameID.getText().toString();
 
         getPlayerCount();
-
-        //New way to pass extra strings, it allows you to carry over two strings in one intent without the app getting them mixed up
-        intentGame.putExtra("GameID", gValue);
-        intentGame.putExtra("UserID", uValue);
-
-        startActivity(intentGame);
     }
 
     // Add a player to the game. This is where the user is added to the game. You need to store this
@@ -124,7 +119,13 @@ public class IntroPage extends AppCompatActivity {
         // Store the player.playerID in a variable.
         // This is the user's unique ID. You'll refer to this every time you need to update their status
         // (Hint: Write a method for updating the status).
+
         uValue = player.playerID;
+        extras.putString("UserID", uValue);
+        extras.putString("GameID", gValue);
+
+        intentGame.putExtras(extras);
+        startActivity(intentGame);
     }
 
     public void getPlayerCount() {

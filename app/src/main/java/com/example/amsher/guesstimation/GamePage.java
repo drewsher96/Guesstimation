@@ -74,22 +74,17 @@ public class GamePage extends AppCompatActivity {
         lockInBtn = findViewById(R.id.lockInBtn);
 
         //this is the new way to get the extra strings when there is more than one string to be passed, the way its set up is on the intro page
-        gameSessionID = getIntent().getStringExtra("GameID");
-        userID = getIntent().getStringExtra("UserID");
+        Intent intentGame = getIntent();
+        Bundle extras = intentGame.getExtras();
+        gameSessionID = extras.getString("GameID");
+        userID = extras.getString("UserID");
 
         getPlayerCount();
-        //getPlayerStatus();
-
-        lockInBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                setStatusTo(newStatus);
-            }
-        });
     }
 
     protected void onLockinClick(View v){
         newStatus = "1";
+        getPlayerStatus();
         startNextRound();
     }
 
