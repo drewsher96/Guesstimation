@@ -28,7 +28,7 @@ public class GamePage extends AppCompatActivity {
     public Firebase mRefInstanceReady;
     public String gameSessionID; //Need to pull real Session ID
     public static String ExtraStringU;
-    String userName;
+    public String userID;
     int NumOfPlayers;
     int AllReady;
     String playerID;
@@ -73,10 +73,9 @@ public class GamePage extends AppCompatActivity {
         statusTV = findViewById(R.id.statusTV);
         lockInBtn = findViewById(R.id.lockInBtn);
 
-        //this is the new way to get the extra strings when there is more than one string to be passed, the way its set up is on the intro page.
-        Bundle extras = getIntent().getExtras();
-        gameSessionID = extras.getString("GameID");
-        userName = extras.getString("UserID");
+        //this is the new way to get the extra strings when there is more than one string to be passed, the way its set up is on the intro page
+        gameSessionID = getIntent().getStringExtra("GameID");
+        userID = getIntent().getStringExtra("UserID");
 
         getPlayerCount();
         //getPlayerStatus();
@@ -113,7 +112,7 @@ public class GamePage extends AppCompatActivity {
 
                 int MotherStatus = 1;
                 for(int i = 1; i < NumOfPlayers+1; i++){
-                    Map<String, String> statusMap = map.get(userName);
+                    Map<String, String> statusMap = map.get(userID);
                     System.out.println("matchMap: " + statusMap);
                     String status = null;
                     if(statusMap.containsKey("Ready")){
@@ -157,7 +156,7 @@ public class GamePage extends AppCompatActivity {
             count++;
             if(count == qArray.length){
                 Intent intent1 = new Intent(getApplicationContext(), ResultsPage.class);
-                intent1.putExtra(ExtraStringU, userName);
+                intent1.putExtra(ExtraStringU, userID);
                 startActivity(intent1);
             }
         }
