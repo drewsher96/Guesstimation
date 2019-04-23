@@ -32,6 +32,7 @@ public class IntroPage extends AppCompatActivity {
     public String uValue;
     public String gValue;
     public String userName;
+    public Intent intentGame;
     public static String Extra_String;
     public static String Extra_StringU;
 
@@ -39,11 +40,6 @@ public class IntroPage extends AppCompatActivity {
     public Firebase mRef;
     public Firebase mRefInstance;
     public Firebase mRefInstanceUser;
-    public Firebase mRefInstanceReady;
-    public Firebase mRefInstanceScore;
-    public Firebase mDatabase;
-    private FirebaseDatabase database;
-    private DatabaseReference dbRef;
 
     //Declaring variables
     int NumOfPlayers = 0;
@@ -105,11 +101,11 @@ public class IntroPage extends AppCompatActivity {
 
         getPlayerCount();
 
-        Intent intentGame = new Intent(this, GamePage.class);
+        intentGame = new Intent(this, GamePage.class);
 
         //New way to pass extra strings, it allows you to carry over two strings in one intent without the app getting them mixed up
         intentGame.putExtra("GameID", gValue);
-        intentGame.putExtra("UserID", uValue);
+
         startActivity(intentGame);
 
     }
@@ -130,6 +126,8 @@ public class IntroPage extends AppCompatActivity {
         // This is the user's unique ID. You'll refer to this every time you need to update their status
         // (Hint: Write a method for updating the status).
         uValue = player.playerID;
+        intentGame.putExtra("UserID", uValue);
+
     }
 
     public void getPlayerCount() {
