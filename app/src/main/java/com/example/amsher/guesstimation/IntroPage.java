@@ -18,13 +18,20 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class IntroPage extends AppCompatActivity {
 
     private EditText userID;
     public EditText gameID;
+    public Button JoinBtn;
+    public Button HostBtn;
     public String uValue;
     public String gValue;
+    public String userName;
     public static String Extra_String;
     public static String Extra_StringU;
 
@@ -34,6 +41,13 @@ public class IntroPage extends AppCompatActivity {
     public Firebase mRefInstanceUser;
     public Firebase mRefInstanceReady;
     public Firebase mRefInstanceScore;
+    public Firebase mDatabase;
+    private FirebaseDatabase database;
+    private DatabaseReference dbRef;
+
+    //Declaring variables
+    int NumOfPlayers = 0;
+    int AllReady;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,18 +56,40 @@ public class IntroPage extends AppCompatActivity {
 
         userID = (EditText) findViewById(R.id.editText1);
         gameID = (EditText) findViewById(R.id.editText2);
+        JoinBtn = findViewById(R.id.button4);
+        HostBtn = findViewById(R.id.button);
+
+
+        JoinBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onJoinClick();
+            }
+        });
+
+        HostBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onHostClick();
+            }
+        });
+
+        Firebase.setAndroidContext(this);
+
+        System.out.println(gameID.getText().toString());
+
     }
 
-    protected void onHostClick (View v) {
+    protected void onHostClick () {
         Firebase.setAndroidContext(this);
         mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
 
-        uValue = userID.getText().toString();
+        userName = userID.getText().toString();
         gValue = gameID.getText().toString();
 
         mRefInstance = mRef.child(gValue);
         mRefInstanceUser = mRefInstance.child("Host");
-        mRefInstanceUser.setValue(uValue);
+        mRefInstanceUser.setValue(userName);
 
         Intent intent1 = new Intent(getApplicationContext(), AdminPage.class);
 
@@ -61,29 +97,75 @@ public class IntroPage extends AppCompatActivity {
         startActivity(intent1);
     }
 
-    protected void onJoinClick (View v) {
-        Firebase.setAndroidContext(this);
-        mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
+    protected void onJoinClick () {
 
-        uValue = userID.getText().toString();
+        NumOfPlayers = 0;
+        userName = userID.getText().toString();
         gValue = gameID.getText().toString();
-        int score = 0;
-        int ready = 0;
 
-        mRefInstance = mRef.child(gValue).child(uValue);
-        mRefInstanceReady = mRefInstance.child("Ready");
-        mRefInstanceReady.setValue(ready);
-
-        mRefInstanceScore = mRefInstance.child("Score");
-        mRefInstanceScore.setValue(score);
+        getPlayerCount();
 
         Intent intentGame = new Intent(this, GamePage.class);
 
         //New way to pass extra strings, it allows you to carry over two strings in one intent without the app getting them mixed up
         intentGame.putExtra("GameID", gValue);
-        intentGame.putExtra("UserName", uValue);
+        intentGame.putExtra("UserID", uValue);
         startActivity(intentGame);
 
+    }
 
+    // Add a player to the game. This is where the user is added to the game. You need to store this
+    public void AddPlayerToGame() {
+        mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game/" + gValue);
+
+        System.out.println("Number of Players Add: " + NumOfPlayers);
+        Player player = new Player(Integer.toString(NumOfPlayers + 1), userName);
+
+        System.out.println("This is the playerID: " + player.playerID);
+        mRef.child(player.playerID).child("Name").setValue(userName);
+        mRef.child(player.playerID).child("Score").setValue(player.score);
+        mRef.child(player.playerID).child("Ready").setValue(player.ready);
+
+        // Store the player.playerID in a variable.
+        // This is the user's unique ID. You'll refer to this every time you need to update their status
+        // (Hint: Write a method for updating the status).
+        uValue = player.playerID;
+    }
+
+    public void getPlayerCount() {
+
+
+        String url = "https://guesstimation-445f5.firebaseio.com/Game/" + gValue;
+        System.out.println("Firebase URL: " + url);
+        mRef = new Firebase(url);
+
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
+                System.out.println(map);
+
+                // Pull all children in the game object and place them in a Set variable
+                Set players = map.entrySet();
+
+                if(!players.isEmpty()){
+                    NumOfPlayers = players.size() - 1;
+                    System.out.println("### PLAYER COUNT ###");
+                    System.out.println("         " + NumOfPlayers);
+                    System.out.println("####################");
+                    AddPlayerToGame();
+                }
+                else {
+                    System.out.println("No Players Found");
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+
+        });
     }
 }
