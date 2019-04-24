@@ -1,7 +1,6 @@
 package com.example.amsher.guesstimation;
 
 import android.content.Intent;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,8 +28,6 @@ public class GamePage extends AppCompatActivity {
 
     public String gameSessionID; //Need to pull real Session ID
     public static String ExtraStringU;
-    private Intent intentGame;
-    public Bundle extras;
     public String userID;
     public String questionID = "1";
     public int pointCounter = 0;
@@ -46,20 +43,6 @@ public class GamePage extends AppCompatActivity {
     private RadioButton questionAnswer2;
     private RadioButton questionAnswer3;
     private RadioButton questionAnswer4;
-
-
-    //String gameID = intent1.getStringExtra("gameID");
-
-    String[] qArray = {"How tall is the statue of liberty in feet?","What is the population of Oklahoma in Millions?","How many days are in the average school year?",
-            "What is the average airspeed velocity of an unladen African swallow in MPH?","How many Super Bowls have the New England Patriots won?",
-            "How many different varieties of apples are there?","How much wood could a woodchuck chuck? (in pounds) ","How much does a Tesla Roadster cost in USD?",
-            "What is Bill Gates net worth in Billions? ","What Year did the first moon landing take place? ","Game Over" };
-
-    //An Array of Arrays of answers to questions for the above array. The placement in the initial array
-    //corresponds to their question above
-    String[][] aArray = {{"305","300","260","412"},{"2.5","3.3","3.9","2.7"},{"200","170","160","180"},{"12","24","16","17"},{"6","1","8","Too Many"},
-            {"5000","5500","6000","7500"},{"700","520","650","900"},{"300K","400K","180K","200K"},{"82.2","99.7","90.6","75.4"},{"1970","1969","1971","1962"},{"Game Over","Game Over","Game Over","Game Over"}};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +76,6 @@ public class GamePage extends AppCompatActivity {
 
     protected void onLockInClick(){
         mUserRef.child("Ready").setValue("1");
-
     }
 
     public void getPlayerStatus(){
@@ -139,6 +121,15 @@ public class GamePage extends AppCompatActivity {
                         statusTV.setText("All Players Are Ready");
                         AllReady = MotherStatus;
                         startNextRound();
+                        if(counter == 2) {
+                            //adding points to user's firebase node
+                            mUserRef.child("Score").setValue(Integer.toString(pointCounter));
+
+                            mRef.removeEventListener(this);
+                            Intent intent2 = new Intent(getApplicationContext(), ResultsPage.class);
+                            intent2.putExtra(ExtraStringU, gameSessionID);
+                            startActivity(intent2);
+                        }
                         break;
                     } else if (i == NumOfPlayers && MotherStatus == 0) {
                         System.out.println("Waiting on Players...");
@@ -157,18 +148,6 @@ public class GamePage extends AppCompatActivity {
 
     public void startNextRound(){
         mQuestionRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Questions/");
-
-            /*String question = qArray[count];
-            String answer1 = aArray[count][0];
-            String answer2 = aArray[count][1];
-            String answer3 = aArray[count][2];
-            String answer4 = aArray[count][3];
-            gameQuestion.setText(question);
-            questionAnswer1.setText(answer1);
-            questionAnswer2.setText(answer2);
-            questionAnswer3.setText(answer3);
-            questionAnswer4.setText(answer4);
-            count++;*/
 
             mQuestionRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -205,14 +184,7 @@ public class GamePage extends AppCompatActivity {
                         counter++;
                         questionID = Integer.toString(counter);
 
-                            if(counter == 2) {
-                                //adding points to user's firebase node
-                                mUserRef.child("Score").setValue(Integer.toString(pointCounter));
 
-                                Intent intent2 = new Intent(getApplicationContext(), ResultsPage.class);
-                                intent2.putExtra(ExtraStringU, gameSessionID);
-                                startActivity(intent2);
-                            }
                         }
 
                 }
