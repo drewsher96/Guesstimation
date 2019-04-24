@@ -41,8 +41,8 @@
         <TextView
             android:id="@+id/gameQuestion"
             android:layout_width="match_parent"
-            android:layout_height="245dp"
-            android:text="How tall is the statue of liberty in feet?"
+            android:layout_height="176dp"
+            android:text="Lock in When Ready!"
             android:textSize="36sp" />
 
         <RadioGroup
@@ -53,25 +53,25 @@
                 android:id="@+id/questionAnswer1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="305" />
+                android:text="GET" />
 
             <RadioButton
                 android:id="@+id/questionAnswer2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="300" />
+                android:text="READY" />
 
             <RadioButton
                 android:id="@+id/questionAnswer3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="260" />
+                android:text="TO" />
 
             <RadioButton
                 android:id="@+id/questionAnswer4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="412" />
+                android:text="RUMBLE" />
         </RadioGroup>
 
         <Button

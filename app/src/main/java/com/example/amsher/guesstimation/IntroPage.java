@@ -37,6 +37,8 @@ public class IntroPage extends AppCompatActivity {
     public static String Extra_String;
     public static String Extra_StringU;
 
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mGameRef = mRootRef.child("Game");
 
     public Firebase mRef;
     public Firebase mRefInstance;
@@ -81,14 +83,16 @@ public class IntroPage extends AppCompatActivity {
 
     protected void onHostClick () {
         Firebase.setAndroidContext(this);
-        mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
+        //mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
 
         userName = userID.getText().toString();
         gValue = gameID.getText().toString();
 
-        mRefInstance = mRef.child(gValue);
+        /*mRefInstance = mRef.child(gValue);
         mRefInstanceUser = mRefInstance.child("Host");
-        mRefInstanceUser.setValue(userName);
+        mRefInstanceUser.setValue(userName);*/
+
+        mGameRef.child(gValue).child("Host").setValue(userName);
 
         Intent intent1 = new Intent(getApplicationContext(), AdminPage.class);
 

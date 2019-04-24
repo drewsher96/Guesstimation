@@ -34,6 +34,7 @@ public class GamePage extends AppCompatActivity {
     public int NumOfPlayers;
     public int AllReady;
     public int counter;
+    public int questionCounter = 0;
     TextView playerCountTV;
     TextView statusTV;
 
@@ -85,7 +86,6 @@ public class GamePage extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
                 System.out.println(map);
-
                 Set players = map.entrySet();
 
                 if(!players.isEmpty()){
@@ -120,8 +120,17 @@ public class GamePage extends AppCompatActivity {
                     if (i == NumOfPlayers && MotherStatus == 1) {
                         statusTV.setText("All Players Are Ready");
                         AllReady = MotherStatus;
+
+                        if (questionAnswer1.isChecked() && questionID != "1"){
+                            pointCounter++;
+                            questionCounter++;
+                        } else if (questionID != "1"){
+                            questionCounter++;
+                        }
+
                         startNextRound();
-                        if(counter == 2) {
+
+                        if(questionCounter == 10 && AllReady == 1) {
                             //adding points to user's firebase node
                             mUserRef.child("Score").setValue(Integer.toString(pointCounter));
 
@@ -141,7 +150,7 @@ public class GamePage extends AppCompatActivity {
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-                
+
             }
         });
     }
@@ -153,11 +162,7 @@ public class GamePage extends AppCompatActivity {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     // need to check to make sure an answer was selected somehow
-                        if(AllReady == 1) {
-
-                        if (questionAnswer1.isChecked()){
-                            pointCounter++;
-                        }
+                    if(AllReady == 1) {
 
                         Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
                         System.out.println(map);
@@ -179,13 +184,13 @@ public class GamePage extends AppCompatActivity {
                         questionAnswer3.setText(answer3);
                         questionAnswer4.setText(answer4);
 
-                        mUserRef.child("Ready").setValue("0");
                         counter = Integer.parseInt(questionID);
                         counter++;
                         questionID = Integer.toString(counter);
+                        mUserRef.child("Ready").setValue("0");
 
 
-                        }
+                    }
 
                 }
 
