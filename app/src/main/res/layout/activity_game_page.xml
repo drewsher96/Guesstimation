@@ -41,33 +41,38 @@
         <TextView
             android:id="@+id/gameQuestion"
             android:layout_width="match_parent"
-            android:layout_height="146dp"
+            android:layout_height="245dp"
             android:text="How tall is the statue of liberty in feet?"
             android:textSize="36sp" />
 
-        <RadioButton
-            android:id="@+id/questionAnswer1"
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="305" />
+            android:layout_height="155dp">
 
-        <RadioButton
-            android:id="@+id/questionAnswer2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="300" />
+            <RadioButton
+                android:id="@+id/questionAnswer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="305" />
 
-        <RadioButton
-            android:id="@+id/questionAnswer3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="260" />
+            <RadioButton
+                android:id="@+id/questionAnswer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="300" />
 
-        <RadioButton
-            android:id="@+id/questionAnswer4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="412" />
+            <RadioButton
+                android:id="@+id/questionAnswer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="260" />
+
+            <RadioButton
+                android:id="@+id/questionAnswer4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="412" />
+        </RadioGroup>
 
         <Button
             android:id="@+id/lockInBtn"
