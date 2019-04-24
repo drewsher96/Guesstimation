@@ -23,15 +23,17 @@ public class GamePage extends AppCompatActivity {
     public Firebase mRef;
     public DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     public DatabaseReference mGameRef = mRootRef.child("Game");
+    public Firebase mQuestionRef;
     public DatabaseReference mUserRef;
     public String gameSessionID; //Need to pull real Session ID
     public static String ExtraStringU;
     private Intent intentGame;
     public Bundle extras;
     public String userID;
-    int NumOfPlayers;
-    int AllReady;
-    public int roundCount;
+    public String questionID = "1";
+    public int NumOfPlayers;
+    public int AllReady;
+    public int counter;
     TextView playerCountTV;
     TextView statusTV;
 
@@ -75,12 +77,20 @@ public class GamePage extends AppCompatActivity {
         gameSessionID = extras.getString("GameID");
         userID = extras.getString("UserID");
         mUserRef = mGameRef.child(gameSessionID).child(userID);
-        mUserRef.child("Ready").setValue("0");
+
+        getPlayerStatus();
+
+        lockInBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onLockInClick();
+            }
+        });
     }
 
-    protected void onLockinClick(View v){
+    protected void onLockInClick(){
         mUserRef.child("Ready").setValue("1");
-        getPlayerStatus();
+
     }
 
     public void getPlayerStatus(){
@@ -142,10 +152,10 @@ public class GamePage extends AppCompatActivity {
     }
 
     public void startNextRound(){
-        int count = 1;
+        mQuestionRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Questions/");
 
         if(AllReady == 1) {
-            String question = qArray[count];
+            /*String question = qArray[count];
             String answer1 = aArray[count][0];
             String answer2 = aArray[count][1];
             String answer3 = aArray[count][2];
@@ -155,11 +165,49 @@ public class GamePage extends AppCompatActivity {
             questionAnswer2.setText(answer2);
             questionAnswer3.setText(answer3);
             questionAnswer4.setText(answer4);
-            count++;
+            count++;*/
 
-            mUserRef.child("Ready").setValue("0");
+            mQuestionRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
+                    System.out.println(map);
 
-            if(count == qArray.length) {
+                    System.out.println(questionID);
+
+                    Map<String, String> questionMap = map.get(questionID);
+                    System.out.println("matchMap: " + questionMap);
+
+                    String question = questionMap.get("Question");
+                    String answer1 = questionMap.get("CAnswer");
+                    String answer2 = questionMap.get("I1Answer");
+                    String answer3 = questionMap.get("I2Answer");
+                    String answer4 = questionMap.get("I3Answer");
+
+                    gameQuestion.setText(question);
+                    questionAnswer1.setText(answer1);
+                    questionAnswer2.setText(answer2);
+                    questionAnswer3.setText(answer3);
+                    questionAnswer4.setText(answer4);
+
+                    mUserRef.child("Ready").setValue("0");
+                    counter = Integer.parseInt(questionID);
+                    counter++;
+                    questionID = Integer.toString(counter);
+
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+
+                }
+            });
+
+            //Resetting user to not ready
+
+
+            // hard coding this for current amount of questions in database
+            if(counter == 3) {
                 Intent intent2 = new Intent(getApplicationContext(), ResultsPage.class);
                 intent2.putExtra(ExtraStringU, userID);
                 startActivity(intent2);
