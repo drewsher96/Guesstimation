@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.client.DataSnapshot;
@@ -19,13 +20,20 @@ import java.util.ArrayList;
 public class ResultsPage extends AppCompatActivity {
 
     public Firebase mRef;
-    public Firebase mRefInstance;
+    /*public Firebase mRefInstance;
     public Firebase mRefInstanceUser1;
     public Firebase mRefInstanceUser2;
     public Firebase mRefInstanceUser3;
     public Firebase mRefInstanceScore1;
     public Firebase mRefInstanceScore2;
-    public Firebase mRefInstanceScore3;
+    public Firebase mRefInstanceScore3;*/
+
+    private Button homeBtn;
+
+    public DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    public DatabaseReference mGameRef = mRootRef.child("Game");
+
+
     private String rgameID;
     private String extra_User;
 
@@ -34,14 +42,23 @@ public class ResultsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_page);
 
-        rgameID = getIntent().getStringExtra(IntroPage.Extra_String);
-        extra_User = getIntent().getStringExtra(GamePage.ExtraStringU);
+        rgameID = getIntent().getStringExtra(GamePage.ExtraStringU);
+        homeBtn = (findViewById(R.id.homeBtn));
 
         Firebase.setAndroidContext(this);
         mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
 
         DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ref = dataRef.child("Game").child(rgameID);
+
+        homeBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                onHomeClick();
+            }
+        });
+
+
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -64,7 +81,10 @@ public class ResultsPage extends AppCompatActivity {
 
     }
 
-    protected void onHomeClick (View v) {
+    protected void onHomeClick () {
+
+        mGameRef.child(rgameID).setValue(null);
+
         Intent intent = new Intent(getApplicationContext(), IntroPage.class);
         startActivity(intent);
     }

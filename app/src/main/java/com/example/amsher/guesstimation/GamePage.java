@@ -143,13 +143,14 @@ public class GamePage extends AppCompatActivity {
                     } else if (i == NumOfPlayers && MotherStatus == 0) {
                         System.out.println("Waiting on Players...");
                         statusTV.setText("Waiting on Players...");
+
                     }
                 }
             }
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-
+                
             }
         });
     }
@@ -204,12 +205,12 @@ public class GamePage extends AppCompatActivity {
                         counter++;
                         questionID = Integer.toString(counter);
 
-                            if(counter == 9) {
+                            if(counter == 2) {
                                 //adding points to user's firebase node
                                 mUserRef.child("Score").setValue(Integer.toString(pointCounter));
 
                                 Intent intent2 = new Intent(getApplicationContext(), ResultsPage.class);
-                                intent2.putExtra(ExtraStringU, userID);
+                                intent2.putExtra(ExtraStringU, gameSessionID);
                                 startActivity(intent2);
                             }
                         }
