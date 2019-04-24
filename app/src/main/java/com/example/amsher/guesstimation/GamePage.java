@@ -20,17 +20,20 @@ import java.util.Map;
 import java.util.Set;
 
 public class GamePage extends AppCompatActivity {
+    //Firebase variables
     public Firebase mRef;
     public DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     public DatabaseReference mGameRef = mRootRef.child("Game");
     public Firebase mQuestionRef;
     public DatabaseReference mUserRef;
+
     public String gameSessionID; //Need to pull real Session ID
     public static String ExtraStringU;
     private Intent intentGame;
     public Bundle extras;
     public String userID;
     public String questionID = "1";
+    public int pointCounter = 0;
     public int NumOfPlayers;
     public int AllReady;
     public int counter;
@@ -122,7 +125,7 @@ public class GamePage extends AppCompatActivity {
 
                 int MotherStatus = 1;
                 for(int i = 1; i < NumOfPlayers+1; i++) {
-                    Map<String, String> statusMap = map.get(userID);
+                    Map<String, String> statusMap = map.get(Integer.toString(i));
                     System.out.println("matchMap: " + statusMap);
                     String status = null;
                     if (statusMap.containsKey("Ready")) {
@@ -169,7 +172,12 @@ public class GamePage extends AppCompatActivity {
             mQuestionRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    if(AllReady == 1) {
+                    // need to check to make sure an answer was selected somwhow
+                        if(AllReady == 1) {
+
+                        if (questionAnswer1.isChecked()){
+                            pointCounter++;
+                        }
 
                         Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
                         System.out.println(map);
@@ -209,7 +217,10 @@ public class GamePage extends AppCompatActivity {
 
 
             // hard coding this for current amount of questions in database
-            if(counter == 3) {
+            if(counter == 10) {
+                //adding points to user's firebase node
+                mUserRef.child("Score").setValue(Integer.toString(pointCounter));
+
                 Intent intent2 = new Intent(getApplicationContext(), ResultsPage.class);
                 intent2.putExtra(ExtraStringU, userID);
                 startActivity(intent2);
