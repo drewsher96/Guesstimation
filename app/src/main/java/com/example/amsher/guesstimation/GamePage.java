@@ -154,7 +154,6 @@ public class GamePage extends AppCompatActivity {
     public void startNextRound(){
         mQuestionRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Questions/");
 
-        if(AllReady == 1) {
             /*String question = qArray[count];
             String answer1 = aArray[count][0];
             String answer2 = aArray[count][1];
@@ -170,30 +169,33 @@ public class GamePage extends AppCompatActivity {
             mQuestionRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
-                    System.out.println(map);
+                    if(AllReady == 1) {
 
-                    System.out.println(questionID);
+                        Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
+                        System.out.println(map);
 
-                    Map<String, String> questionMap = map.get(questionID);
-                    System.out.println("matchMap: " + questionMap);
+                        System.out.println(questionID);
 
-                    String question = questionMap.get("Question");
-                    String answer1 = questionMap.get("CAnswer");
-                    String answer2 = questionMap.get("I1Answer");
-                    String answer3 = questionMap.get("I2Answer");
-                    String answer4 = questionMap.get("I3Answer");
+                        Map<String, String> questionMap = map.get(questionID);
+                        System.out.println("matchMap: " + questionMap);
 
-                    gameQuestion.setText(question);
-                    questionAnswer1.setText(answer1);
-                    questionAnswer2.setText(answer2);
-                    questionAnswer3.setText(answer3);
-                    questionAnswer4.setText(answer4);
+                        String question = questionMap.get("Question");
+                        String answer1 = questionMap.get("CAnswer");
+                        String answer2 = questionMap.get("I1Answer");
+                        String answer3 = questionMap.get("I2Answer");
+                        String answer4 = questionMap.get("I3Answer");
 
-                    mUserRef.child("Ready").setValue("0");
-                    counter = Integer.parseInt(questionID);
-                    counter++;
-                    questionID = Integer.toString(counter);
+                        gameQuestion.setText(question);
+                        questionAnswer1.setText(answer1);
+                        questionAnswer2.setText(answer2);
+                        questionAnswer3.setText(answer3);
+                        questionAnswer4.setText(answer4);
+
+                        mUserRef.child("Ready").setValue("0");
+                        counter = Integer.parseInt(questionID);
+                        counter++;
+                        questionID = Integer.toString(counter);
+                    }
 
                 }
 
@@ -221,6 +223,6 @@ public class GamePage extends AppCompatActivity {
                 intentGame.putExtras(extras);
                 startActivity(intentGame);
             }*/
-        }
+
     }
 }
