@@ -172,7 +172,7 @@ public class GamePage extends AppCompatActivity {
             mQuestionRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    // need to check to make sure an answer was selected somwhow
+                    // need to check to make sure an answer was selected somehow
                         if(AllReady == 1) {
 
                         if (questionAnswer1.isChecked()){
@@ -203,7 +203,16 @@ public class GamePage extends AppCompatActivity {
                         counter = Integer.parseInt(questionID);
                         counter++;
                         questionID = Integer.toString(counter);
-                    }
+
+                            if(counter == 9) {
+                                //adding points to user's firebase node
+                                mUserRef.child("Score").setValue(Integer.toString(pointCounter));
+
+                                Intent intent2 = new Intent(getApplicationContext(), ResultsPage.class);
+                                intent2.putExtra(ExtraStringU, userID);
+                                startActivity(intent2);
+                            }
+                        }
 
                 }
 
@@ -217,14 +226,7 @@ public class GamePage extends AppCompatActivity {
 
 
             // hard coding this for current amount of questions in database
-            if(counter == 10) {
-                //adding points to user's firebase node
-                mUserRef.child("Score").setValue(Integer.toString(pointCounter));
-
-                Intent intent2 = new Intent(getApplicationContext(), ResultsPage.class);
-                intent2.putExtra(ExtraStringU, userID);
-                startActivity(intent2);
-            } /*else {
+            /*else {
                 intentGame = new Intent(getApplicationContext(), GamePage.class);
                 extras = new Bundle();
                 extras.putInt("Count", count);
