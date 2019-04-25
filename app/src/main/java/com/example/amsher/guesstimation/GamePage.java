@@ -28,12 +28,15 @@ public class GamePage extends AppCompatActivity {
 
     public String gameSessionID; //Need to pull real Session ID
     public static String ExtraStringU;
+    public static String ExtraUser;
     public String userID;
     public String questionID = "1";
     public int pointCounter = 0;
     public int NumOfPlayers;
     public int AllReady;
     public int counter;
+    private Intent intentResults;
+    public Bundle extrasRes;
     public int questionCounter = 0;
     TextView playerCountTV;
     TextView statusTV;
@@ -57,6 +60,9 @@ public class GamePage extends AppCompatActivity {
         playerCountTV = findViewById(R.id.playerCountTV);
         statusTV = findViewById(R.id.statusTV);
         lockInBtn = findViewById(R.id.lockInBtn);
+
+        intentResults = new Intent(getApplicationContext(), ResultsPage.class);
+        extrasRes = new Bundle();
 
         //this is the new way to get the extra strings when there is more than one string to be passed, the way its set up is on the intro page
         Intent intentGame = getIntent();
@@ -135,9 +141,11 @@ public class GamePage extends AppCompatActivity {
                             mUserRef.child("Score").setValue(Integer.toString(pointCounter));
 
                             mRef.removeEventListener(this);
-                            Intent intent2 = new Intent(getApplicationContext(), ResultsPage.class);
-                            intent2.putExtra(ExtraStringU, gameSessionID);
-                            startActivity(intent2);
+                            extrasRes.putString("UserID", userID);
+                            extrasRes.putString("GameID", gameSessionID);
+
+                            intentResults.putExtras(extrasRes);
+                            startActivity(intentResults);
                         }
                         break;
                     } else if (i == NumOfPlayers && MotherStatus == 0) {

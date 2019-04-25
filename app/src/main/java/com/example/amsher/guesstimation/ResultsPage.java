@@ -25,13 +25,21 @@ public class ResultsPage extends AppCompatActivity {
     public DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     public DatabaseReference mGameRef = mRootRef.child("Game");
     private String rgameID;
+    private String extra_User;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_page);
 
-        rgameID = getIntent().getStringExtra(GamePage.ExtraStringU);
+        Intent intentGame = getIntent();
+        Bundle extras = intentGame.getExtras();
+        rgameID = extras.getString("GameID");
+        extra_User = extras.getString("UserID");
+
+        System.out.println("This is the game ID: " + rgameID);
+        System.out.println("This is the user ID: " + extra_User);
+
         homeBtn = (findViewById(R.id.homeBtn));
 
         Firebase.setAndroidContext(this);
