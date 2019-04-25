@@ -41,12 +41,9 @@ public class IntroPage extends AppCompatActivity {
     DatabaseReference mGameRef = mRootRef.child("Game");
 
     public Firebase mRef;
-    public Firebase mRefInstance;
-    public Firebase mRefInstanceUser;
 
     //Declaring variables
     int NumOfPlayers = 0;
-    int AllReady;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,14 +80,9 @@ public class IntroPage extends AppCompatActivity {
 
     protected void onHostClick () {
         Firebase.setAndroidContext(this);
-        //mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
 
         userName = userID.getText().toString();
         gValue = gameID.getText().toString();
-
-        /*mRefInstance = mRef.child(gValue);
-        mRefInstanceUser = mRefInstance.child("Host");
-        mRefInstanceUser.setValue(userName);*/
 
         mGameRef.child(gValue).child("Host").setValue(userName);
 
@@ -122,7 +114,6 @@ public class IntroPage extends AppCompatActivity {
 
         // Store the player.playerID in a variable.
         // This is the user's unique ID. You'll refer to this every time you need to update their status
-        // (Hint: Write a method for updating the status).
 
         uValue = player.playerID;
         extras.putString("UserID", uValue);

@@ -18,14 +18,29 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 public class ResultsPage extends AppCompatActivity {
+
     public Firebase mRef;
     private Button homeBtn;
+
     public DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     public DatabaseReference mGameRef = mRootRef.child("Game");
+    public DatabaseReference mSessionRef;
+
     private String rgameID;
-    private String extra_User;
+    private String userID;
+    public int NumOfPlayers;
+    public int display =0;
+
+    public TextView playerResultsTV;
+    public TextView playerResultsTV2;
+
+    ArrayList<String> finalName = new ArrayList<>();
+    ArrayList<String> finalScore = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +50,13 @@ public class ResultsPage extends AppCompatActivity {
         Intent intentGame = getIntent();
         Bundle extras = intentGame.getExtras();
         rgameID = extras.getString("GameID");
-        extra_User = extras.getString("UserID");
+        userID = extras.getString("UserID");
+
+        playerResultsTV = (TextView) findViewById(R.id.playerResultsTV);
+        playerResultsTV2 = (TextView) findViewById(R.id.playerResultsTV2);
 
         System.out.println("This is the game ID: " + rgameID);
-        System.out.println("This is the user ID: " + extra_User);
+        System.out.println("This is the user ID: " + userID);
 
         homeBtn = (findViewById(R.id.homeBtn));
 
@@ -47,39 +65,14 @@ public class ResultsPage extends AppCompatActivity {
         DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ref = dataRef.child("Game").child(rgameID);
 
-        homeBtn.setOnClickListener(new View.OnClickListener(){
+        homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 onHomeClick();
             }
         });
 
-
-        /*ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<String> names = new ArrayList<>();
-
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
-                    String userName = ds.child(extra_User).toString();
-                    names.add(userName);
-
-                    String score = ds.child("Score").getValue(String.class);
-                    Log.d("User", userName + ":" + score);
-                }
-
-                for(String userName : names) {
-                    TextView stringTextView = (TextView) findViewById(R.id.textView4);
-                    stringTextView.setText(stringTextView.getText().toString() + userName);
-                }
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
-            }
-        };
-*/
+        getPlayerStatus();
     }
 
     protected void onHomeClick () {
@@ -88,4 +81,67 @@ public class ResultsPage extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), IntroPage.class);
         startActivity(intent);
     }
+
+    public void getPlayerStatus() {
+        mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game/" + rgameID);
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
+                System.out.println(map);
+                Set players = map.entrySet();
+
+                if (!players.isEmpty()) {
+                    NumOfPlayers = players.size() - 1;
+                    System.out.println("### PLAYER COUNT ###");
+                    System.out.println("         " + NumOfPlayers);
+                    System.out.println("####################");
+
+                } else {
+                    System.out.println("No Players Found");
+                }
+
+                NumOfPlayers = players.size() - 1;
+                System.out.println("Number of Players: " + NumOfPlayers);
+
+
+                for (int i = 1; i < NumOfPlayers + 1; i++) {
+                    Map<String, String> statusMap = map.get(Integer.toString(i));
+                    System.out.println("matchMap: " + statusMap);
+                    String name = null;
+                    if (statusMap.containsKey("Name")) {
+                        name = statusMap.get("Name");
+                        System.out.println("Value from Map: " + name);
+                        finalName.add(name);
+                    }
+
+
+                }
+
+                for (int i = 1; i < NumOfPlayers + 1; i++) {
+                    Map<String, String> statusMap = map.get(Integer.toString(i));
+                    System.out.println("matchMap: " + statusMap);
+                    String score = null;
+                    if (statusMap.containsKey("Score")) {
+                        score = statusMap.get("Score");
+                        System.out.println("Value from Map: " + score);
+                        finalScore.add(score);
+                    }
+                    //Gets name and score from a arrays added above and concats to the two textViews
+                    String n = finalName.get(i - 1);
+                    String s = finalScore.get(i - 1);
+                    playerResultsTV.setText(playerResultsTV.getText().toString() + n + ": " + "\r\n");
+                    playerResultsTV2.setText(playerResultsTV2.getText().toString() + s + "\r\n");
+                }
+
+            }
+
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
 }
+

@@ -180,6 +180,7 @@ public class GamePage extends AppCompatActivity {
                         Map<String, String> questionMap = map.get(questionID);
                         System.out.println("matchMap: " + questionMap);
 
+                        //Looks for name in Firebase, writes to TextViews
                         String question = questionMap.get("Question");
                         String answer1 = questionMap.get("CAnswer");
                         String answer2 = questionMap.get("I1Answer");
@@ -208,20 +209,6 @@ public class GamePage extends AppCompatActivity {
                 }
             });
 
-            //Resetting user to not ready
-
-
-            // hard coding this for current amount of questions in database
-            /*else {
-                intentGame = new Intent(getApplicationContext(), GamePage.class);
-                extras = new Bundle();
-                extras.putInt("Count", count);
-                extras.putString("UserID", userID);
-                extras.putString("GameID", gameSessionID);
-
-                intentGame.putExtras(extras);
-                startActivity(intentGame);
-            }*/
 
     }
 }
