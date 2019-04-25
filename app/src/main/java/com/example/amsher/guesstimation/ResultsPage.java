@@ -15,27 +15,16 @@ import com.firebase.client.ValueEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class ResultsPage extends AppCompatActivity {
-
     public Firebase mRef;
-    /*public Firebase mRefInstance;
-    public Firebase mRefInstanceUser1;
-    public Firebase mRefInstanceUser2;
-    public Firebase mRefInstanceUser3;
-    public Firebase mRefInstanceScore1;
-    public Firebase mRefInstanceScore2;
-    public Firebase mRefInstanceScore3;*/
-
     private Button homeBtn;
-
     public DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     public DatabaseReference mGameRef = mRootRef.child("Game");
-
-
     private String rgameID;
-    private String extra_User;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +36,6 @@ public class ResultsPage extends AppCompatActivity {
 
         Firebase.setAndroidContext(this);
         mRef = new Firebase("https://guesstimation-445f5.firebaseio.com/Game");
-
         DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ref = dataRef.child("Game").child(rgameID);
 
@@ -59,7 +47,7 @@ public class ResultsPage extends AppCompatActivity {
         });
 
 
-        ValueEventListener eventListener = new ValueEventListener() {
+        /*ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 ArrayList<String> names = new ArrayList<>();
@@ -71,6 +59,11 @@ public class ResultsPage extends AppCompatActivity {
                     String score = ds.child("Score").getValue(String.class);
                     Log.d("User", userName + ":" + score);
                 }
+
+                for(String userName : names) {
+                    TextView stringTextView = (TextView) findViewById(R.id.textView4);
+                    stringTextView.setText(stringTextView.getText().toString() + userName);
+                }
             }
 
             @Override
@@ -78,11 +71,10 @@ public class ResultsPage extends AppCompatActivity {
 
             }
         };
-
+*/
     }
 
     protected void onHomeClick () {
-
         mGameRef.child(rgameID).setValue(null);
 
         Intent intent = new Intent(getApplicationContext(), IntroPage.class);
