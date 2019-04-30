@@ -123,7 +123,7 @@ public class GamePage extends AppCompatActivity {
                     }
 
                     System.out.println("MotherStatus: " + MotherStatus);
-                    if (i == NumOfPlayers && MotherStatus == 1) {
+                    if (i == NumOfPlayers && MotherStatus == 1 && NumOfPlayers > 1) {
                         statusTV.setText("All Players Are Ready");
                         AllReady = MotherStatus;
 
