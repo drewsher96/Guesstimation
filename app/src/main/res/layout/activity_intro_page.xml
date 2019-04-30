@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntroPage">
+    tools:context=".IntroPage"
+    android:background="#332186">
+
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -18,12 +21,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
+
         <TextView
             android:id="@+id/Guesstimation"
             android:layout_width="398dp"
             android:layout_height="143dp"
+            android:layout_gravity="center"
+            android:fontFamily="cursive"
+            android:outlineAmbientShadowColor="@color/colorPrimaryDark"
             android:text="  Guesstimation"
-            android:textSize="50sp"
+            android:textAlignment="inherit"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColorHighlight="@color/colorAccent"
+            android:textColorHint="@color/colorAccent"
+            android:textSize="65sp"
             app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteY="40dp" />
 
@@ -41,7 +52,9 @@
                     android:id="@+id/userNameID"
                     android:layout_width="129dp"
                     android:layout_height="37dp"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="Enter User Name: "
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
                     tools:layout_editor_absoluteX="47dp"
                     tools:layout_editor_absoluteY="386dp" />
 
@@ -53,7 +66,8 @@
                     android:ems="10"
                     android:hint="Name"
                     android:inputType="textPersonName"
-                    android:text="a" />
+                    android:text="a"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
             </LinearLayout>
 
@@ -66,7 +80,9 @@
                     android:id="@+id/sessionID"
                     android:layout_width="129dp"
                     android:layout_height="42dp"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="Enter Session ID: "
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
                     tools:layout_editor_absoluteX="47dp"
                     tools:layout_editor_absoluteY="386dp" />
 
@@ -78,7 +94,8 @@
                     android:ems="10"
                     android:hint="SessionID"
                     android:inputType="textPersonName"
-                    android:text="1234" />
+                    android:text="1234"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
             </LinearLayout>
 
@@ -95,18 +112,26 @@
 
                 <Button
                     android:id="@+id/button"
-                    android:layout_width="wrap_content"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="#330C4E"
+                    android:fontFamily="sans-serif-condensed"
                     android:onClick="onHostClick"
                     android:text="Host Game"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
                     tools:layout_editor_absoluteX="39dp"
                     tools:layout_editor_absoluteY="231dp" />
 
                 <Button
                     android:id="@+id/button4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="170dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="#330C4E"
+                    android:fontFamily="sans-serif-condensed"
                     android:text="Join Game"
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
                     tools:layout_editor_absoluteX="129dp"
                     tools:layout_editor_absoluteY="282dp" />
 

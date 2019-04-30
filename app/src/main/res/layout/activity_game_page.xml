@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GamePage">
+    tools:context=".GamePage"
+    android:background="#332186">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +20,9 @@
             <TextView
                 android:layout_width="114dp"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
                 android:text="# of Players:"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="18sp" />
 
             <TextView
@@ -27,7 +30,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
                 android:text="TextView"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -35,14 +40,18 @@
             android:id="@+id/statusTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
             android:text="Player Ready?"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/gameQuestion"
             android:layout_width="match_parent"
             android:layout_height="176dp"
+            android:fontFamily="sans-serif-condensed"
             android:text="Lock in When Ready!"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="36sp" />
 
         <RadioGroup
@@ -53,33 +62,46 @@
                 android:id="@+id/questionAnswer1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="GET" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="GET"
+                android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
             <RadioButton
                 android:id="@+id/questionAnswer2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="READY" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="READY"
+                android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
             <RadioButton
                 android:id="@+id/questionAnswer3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TO" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="TO"
+                android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
             <RadioButton
                 android:id="@+id/questionAnswer4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="RUMBLE" />
+                android:fontFamily="sans-serif-condensed"
+                android:text="RUMBLE"
+                android:textColor="@color/common_google_signin_btn_text_dark_default" />
         </RadioGroup>
 
         <Button
             android:id="@+id/lockInBtn"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="0dp"
+            android:background="#330C4E"
+            android:fontFamily="sans-serif-condensed"
             android:onClick="onLockinClick"
             android:text="Lock In!"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="36sp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
