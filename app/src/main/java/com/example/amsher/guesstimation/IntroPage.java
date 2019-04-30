@@ -93,11 +93,13 @@ public class IntroPage extends AppCompatActivity {
     }
 
     protected void onJoinClick () {
+
         NumOfPlayers = 0;
         userName = userID.getText().toString();
         gValue = gameID.getText().toString();
 
         getPlayerCount();
+
     }
 
     // Add a player to the game. This is where the user is added to the game. You need to store this
@@ -137,9 +139,15 @@ public class IntroPage extends AppCompatActivity {
                 System.out.println(map);
 
                 // Pull all children in the game object and place them in a Set variable
-                Set players = map.entrySet();
+                Set players = null;
+                try {
+                    players = map.entrySet();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Session ID Invalid", Toast.LENGTH_SHORT).show();
+                }
 
-                if(!players.isEmpty()){
+                if(players != null){
                     NumOfPlayers = players.size() - 1;
                     System.out.println("### PLAYER COUNT ###");
                     System.out.println("         " + NumOfPlayers);
@@ -153,6 +161,7 @@ public class IntroPage extends AppCompatActivity {
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
+
             }
 
         });
