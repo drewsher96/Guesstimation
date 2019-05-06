@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResultsPage">
+    tools:context=".ResultsPage"
+    android:background="#332186">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +18,10 @@
             android:id="@+id/results"
             android:layout_width="match_parent"
             android:layout_height="165dp"
+            android:fontFamily="cursive"
+            android:gravity="center_horizontal"
             android:text=" RESULTS"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="80sp" />
 
         <LinearLayout
@@ -30,6 +34,9 @@
                 android:layout_width="14dp"
                 android:layout_height="200dp"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="right"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="20sp" />
 
             <TextView
@@ -37,6 +44,8 @@
                 android:layout_width="100dp"
                 android:layout_height="200dp"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -56,10 +65,15 @@
 
         <Button
             android:id="@+id/homeBtn"
-            android:layout_width="match_parent"
-            android:layout_height="98dp"
+            android:layout_width="170dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="#330C4E"
+            android:fontFamily="sans-serif-condensed"
             android:onClick="onHomeClick"
             android:text="Home"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="36sp" />
 
     </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.amsher.guesstimation;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -71,6 +72,8 @@ public class GamePage extends AppCompatActivity {
         userID = extras.getString("UserID");
         mUserRef = mGameRef.child(gameSessionID).child(userID);
 
+        Music();
+
         getPlayerStatus();
 
         lockInBtn.setOnClickListener(new View.OnClickListener(){
@@ -123,7 +126,8 @@ public class GamePage extends AppCompatActivity {
                     }
 
                     System.out.println("MotherStatus: " + MotherStatus);
-                    if (i == NumOfPlayers && MotherStatus == 1 && NumOfPlayers > 1) {
+                    //CHANGE BACK FROM TESTING
+                    if (i == NumOfPlayers && MotherStatus == 1 && NumOfPlayers > 0) {
                         statusTV.setText("All Players Are Ready");
                         AllReady = MotherStatus;
 
@@ -210,5 +214,10 @@ public class GamePage extends AppCompatActivity {
             });
 
 
+    }
+
+    public void Music (){
+        MediaPlayer jam = MediaPlayer.create(GamePage.this, R.raw.space_jam_song);
+        jam.start();
     }
 }

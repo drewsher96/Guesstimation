@@ -64,7 +64,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:text="GET"
-                android:textColor="@color/common_google_signin_btn_text_dark_default" />
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="24sp" />
 
             <RadioButton
                 android:id="@+id/questionAnswer2"
@@ -72,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:text="READY"
-                android:textColor="@color/common_google_signin_btn_text_dark_default" />
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="24sp" />
 
             <RadioButton
                 android:id="@+id/questionAnswer3"
@@ -80,7 +82,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:text="TO"
-                android:textColor="@color/common_google_signin_btn_text_dark_default" />
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="24sp" />
 
             <RadioButton
                 android:id="@+id/questionAnswer4"
@@ -88,7 +91,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:text="RUMBLE"
-                android:textColor="@color/common_google_signin_btn_text_dark_default" />
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="24sp" />
         </RadioGroup>
 
         <Button

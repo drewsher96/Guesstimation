@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <!--pull the splash image from the drawable folder in res -->
+    <item>
+        <layer-list>
+            <item android:drawable="@color/colorSplash" />
+            <item>
+                <bitmap android:src="@drawable/placeholderred"
+                    android:gravity="center" />
+                <!--keep the splash centered -->
+            </item>
+        </layer-list>
+    </item>
+
+</selector>
