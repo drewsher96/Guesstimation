@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminPage">
+    tools:context=".AdminPage"
+    android:background="#332186">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +23,9 @@
                 android:id="@+id/displaySession"
                 android:layout_width="168dp"
                 android:layout_height="75dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Game ID:"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="36sp" />
 
             <TextView
@@ -30,52 +33,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="sans-serif-condensed"
                 android:text="TextView"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="36sp" />
+
         </LinearLayout>
 
-        <Button
-            android:id="@+id/startGamebtn"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:text="Start Game"
-            android:textSize="24sp" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/stopGamebtn"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:onClick="onStopGame"
-            android:text="Stop Game"
-            android:textSize="24sp" />
+            <Button
+                android:id="@+id/stopRoundbtn"
+                android:layout_width="170dp"
+                android:layout_height="74dp"
+                android:layout_margin="10dp"
+                android:background="#330C4E"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Force Next Round"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/currentQuestion"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:text="CURRENT QUESTION HERE"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/stopRoundbtn"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:text="Stop Round"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/nextRoundbtn"
-            android:layout_width="match_parent"
-            android:layout_height="74dp"
-            android:text="Next Round"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/nextQuestion"
-            android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:text="NEXT QUESTION HERE"
-            android:textSize="18sp" />
+            <Button
+                android:id="@+id/stopGamebtn"
+                android:layout_width="170dp"
+                android:layout_height="74dp"
+                android:layout_margin="10dp"
+                android:background="#330C4E"
+                android:fontFamily="sans-serif-condensed"
+                android:onClick="onStopGame"
+                android:text="Force Game Stop"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="24sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

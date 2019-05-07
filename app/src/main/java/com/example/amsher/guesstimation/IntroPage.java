@@ -1,6 +1,7 @@
 package com.example.amsher.guesstimation;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,6 +55,8 @@ public class IntroPage extends AppCompatActivity {
         gameID = (EditText) findViewById(R.id.editText2);
         JoinBtn = findViewById(R.id.button4);
         HostBtn = findViewById(R.id.button);
+
+
 
         intentGame = new Intent(getApplicationContext(), GamePage.class);
         extras = new Bundle();
