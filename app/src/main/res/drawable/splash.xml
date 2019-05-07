@@ -8,11 +8,9 @@
         <layer-list>
             <item android:drawable="@color/colorSplash" />
             <item>
-                <bitmap android:src="@drawable/new_logo"
-                    android:gravity="center" />
-<!--
-                &lt;!&ndash;keep the splash centered &ndash;&gt;
--->
+                <!--<bitmap android:src="@drawable/placeholderred"
+                    android:gravity="center" />-->
+                <!--keep the splash centered -->
             </item>
         </layer-list>
     </item>
