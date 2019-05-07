@@ -72,7 +72,7 @@ public class GamePage extends AppCompatActivity {
         userID = extras.getString("UserID");
         mUserRef = mGameRef.child(gameSessionID).child(userID);
 
-        //Music();
+        Music();
 
         getPlayerStatus();
 
@@ -127,7 +127,7 @@ public class GamePage extends AppCompatActivity {
 
                     System.out.println("MotherStatus: " + MotherStatus);
                     //CHANGE BACK FROM TESTING
-                    if (i == NumOfPlayers && MotherStatus == 1 && NumOfPlayers > 0) {
+                    if (i == NumOfPlayers && MotherStatus == 1 && NumOfPlayers > 1) {
                         statusTV.setText("All Players Are Ready");
                         AllReady = MotherStatus;
 
@@ -216,8 +216,8 @@ public class GamePage extends AppCompatActivity {
 
     }
 
-   /* public void Music (){
+   public void Music (){
         MediaPlayer jam = MediaPlayer.create(GamePage.this, R.raw.space_jam_song);
         jam.start();
-    }*/
+    }
 }
