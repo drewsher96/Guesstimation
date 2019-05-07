@@ -4,15 +4,17 @@
 
 
     <!--pull the splash image from the drawable folder in res -->
-    <!--<item>
+    <item>
         <layer-list>
             <item android:drawable="@color/colorSplash" />
             <item>
-                <bitmap android:src="@drawable/placeholderred"
+                <bitmap android:src="@drawable/new_logo"
                     android:gravity="center" />
+<!--
                 &lt;!&ndash;keep the splash centered &ndash;&gt;
+-->
             </item>
         </layer-list>
-    </item>-->
+    </item>
 
 </selector>
