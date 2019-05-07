@@ -123,6 +123,7 @@ public class GamePage extends AppCompatActivity {
                     }
 
                     System.out.println("MotherStatus: " + MotherStatus);
+                    //This statement ensures all players are ready and that more than one player is in the session before advancing the question.
                     if (i == NumOfPlayers && MotherStatus == 1 && NumOfPlayers > 1) {
                         statusTV.setText("All Players Are Ready");
                         AllReady = MotherStatus;
