@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +37,6 @@ public class IntroPage extends AppCompatActivity {
     private Intent intentGame;
     public Bundle extras;
     public static String Extra_String;
-    public static String Extra_StringU;
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mGameRef = mRootRef.child("Game");
@@ -83,25 +83,35 @@ public class IntroPage extends AppCompatActivity {
 
     protected void onHostClick () {
         Firebase.setAndroidContext(this);
+        //Checks if fields are filled
+        if (!TextUtils.isEmpty(userID.getText().toString()) && !TextUtils.isEmpty(gameID.getText().toString())) {
+            userName = userID.getText().toString();
+            gValue = gameID.getText().toString();
 
-        userName = userID.getText().toString();
-        gValue = gameID.getText().toString();
+            mGameRef.child(gValue).child("Host").setValue(userName);
 
-        mGameRef.child(gValue).child("Host").setValue(userName);
+            Intent intent1 = new Intent(getApplicationContext(), AdminPage.class);
 
-        Intent intent1 = new Intent(getApplicationContext(), AdminPage.class);
+            intent1.putExtra(Extra_String, gValue);
+            startActivity(intent1);
+        } else {
+            Toast.makeText(getApplicationContext(), "Please Fill All Fields", Toast.LENGTH_SHORT).show();
 
-        intent1.putExtra(Extra_String, gValue);
-        startActivity(intent1);
+        }
     }
 
     protected void onJoinClick () {
+        //Checks if fields are filled
+        if (!TextUtils.isEmpty(userID.getText().toString()) && !TextUtils.isEmpty(gameID.getText().toString())) {
+            NumOfPlayers = 0;
+            userName = userID.getText().toString();
+            gValue = gameID.getText().toString();
 
-        NumOfPlayers = 0;
-        userName = userID.getText().toString();
-        gValue = gameID.getText().toString();
+            getPlayerCount();
+        } else {
+            Toast.makeText(getApplicationContext(), "Please Fill All Fields", Toast.LENGTH_SHORT).show();
 
-        getPlayerCount();
+        }
 
     }
 

@@ -207,6 +207,7 @@ public class GamePage extends AppCompatActivity {
                         counter++;
                         questionID = Integer.toString(counter);
                         mUserRef.child("Ready").setValue("0");
+                        mUserRef.child("QuestionID").setValue(questionID);
 
 
                     }
