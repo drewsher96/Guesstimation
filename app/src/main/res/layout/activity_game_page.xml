@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
-                android:text="RUMBLE"
+                android:text="JAM"
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="24sp" />
         </RadioGroup>
