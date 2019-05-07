@@ -61,12 +61,11 @@
                 <EditText
                     android:id="@+id/editText1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Name"
                     android:inputType="textPersonName"
-                    android:text="a"
                     android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
             </LinearLayout>
@@ -89,12 +88,11 @@
                 <EditText
                     android:id="@+id/editText2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="SessionID"
+                    android:hint="Enter a 4 Digit Code"
                     android:inputType="textPersonName"
-                    android:text="1234"
                     android:textColor="@color/common_google_signin_btn_text_dark_default" />
 
             </LinearLayout>

@@ -28,7 +28,6 @@ public class ResultsPage extends AppCompatActivity {
 
     public DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     public DatabaseReference mGameRef = mRootRef.child("Game");
-    public DatabaseReference mSessionRef;
 
     private String rgameID;
     private String userID;
