@@ -46,19 +46,8 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/stopRoundbtn"
-                android:layout_width="170dp"
-                android:layout_height="74dp"
-                android:layout_margin="10dp"
-                android:background="#330C4E"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Force Next Round"
-                android:textColor="@color/common_google_signin_btn_text_dark_default"
-                android:textSize="24sp" />
-
-            <Button
                 android:id="@+id/stopGamebtn"
-                android:layout_width="170dp"
+                android:layout_width="match_parent"
                 android:layout_height="74dp"
                 android:layout_margin="10dp"
                 android:background="#330C4E"
