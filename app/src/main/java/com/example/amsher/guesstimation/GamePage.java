@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -90,70 +91,78 @@ public class GamePage extends AppCompatActivity {
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
-                System.out.println(map);
-                Set players = map.entrySet();
+                try {
+                    Map<String, Map<String, String>> map = dataSnapshot.getValue(Map.class);
+                    System.out.println(map);
+                    Set players = map.entrySet();
 
-                if(!players.isEmpty()){
-                    NumOfPlayers = players.size() -1;
-                    System.out.println("### PLAYER COUNT ###");
-                    System.out.println("         " + NumOfPlayers);
-                    System.out.println("####################");
+                    if(!players.isEmpty()){
+                        NumOfPlayers = players.size() -1;
+                        System.out.println("### PLAYER COUNT ###");
+                        System.out.println("         " + NumOfPlayers);
+                        System.out.println("####################");
 
+                        playerCountTV.setText(Integer.toString(NumOfPlayers));
+                    }
+                    else {
+                        System.out.println("No Players Found");
+                    }
+
+                    NumOfPlayers = players.size() - 1;
+                    System.out.println("Number of Players: " + NumOfPlayers);
                     playerCountTV.setText(Integer.toString(NumOfPlayers));
-                }
-                else {
-                    System.out.println("No Players Found");
-                }
-
-                NumOfPlayers = players.size() - 1;
-                System.out.println("Number of Players: " + NumOfPlayers);
-                playerCountTV.setText(Integer.toString(NumOfPlayers));
 
 
-                int MotherStatus = 1;
-                for(int i = 1; i < NumOfPlayers+1; i++) {
-                    Map<String, String> statusMap = map.get(Integer.toString(i));
-                    System.out.println("matchMap: " + statusMap);
-                    String status = null;
-                    if (statusMap.containsKey("Ready")) {
-                        status = statusMap.get("Ready");
-                        System.out.println("Value from Map: " + status);
-                        MotherStatus = MotherStatus * Integer.parseInt(status);
-                    }
-
-                    System.out.println("MotherStatus: " + MotherStatus);
-                    //This statement ensures all players are ready and that more than one player is in the session before advancing the question.
-                    if (i == NumOfPlayers && MotherStatus == 1 && NumOfPlayers > 1) {
-                        statusTV.setText("All Players Are Ready");
-                        AllReady = MotherStatus;
-
-                        if (questionAnswer1.isChecked() && questionID != "1"){
-                            pointCounter++;
-                            questionCounter++;
-                        } else if (questionID != "1"){
-                            questionCounter++;
+                    int MotherStatus = 1;
+                    for(int i = 1; i < NumOfPlayers+1; i++) {
+                        Map<String, String> statusMap = map.get(Integer.toString(i));
+                        System.out.println("matchMap: " + statusMap);
+                        String status = null;
+                        if (statusMap.containsKey("Ready")) {
+                            status = statusMap.get("Ready");
+                            System.out.println("Value from Map: " + status);
+                            MotherStatus = MotherStatus * Integer.parseInt(status);
                         }
 
-                        startNextRound();
+                        System.out.println("MotherStatus: " + MotherStatus);
+                        //This statement ensures all players are ready and that more than one player is in the session before advancing the question.
+                        if (i == NumOfPlayers && MotherStatus == 1 && NumOfPlayers > 1) {
+                            statusTV.setText("All Players Are Ready");
+                            AllReady = MotherStatus;
 
-                        if(questionCounter == 10 && AllReady == 1) {
-                            //adding points to user's firebase node
-                            mUserRef.child("Score").setValue(Integer.toString(pointCounter));
+                            if (questionAnswer1.isChecked() && questionID != "1"){
+                                pointCounter++;
+                                questionCounter++;
+                            } else if (questionID != "1"){
+                                questionCounter++;
+                            }
 
-                            mRef.removeEventListener(this);
-                            extrasRes.putString("UserID", userID);
-                            extrasRes.putString("GameID", gameSessionID);
+                            startNextRound();
 
-                            intentResults.putExtras(extrasRes);
-                            startActivity(intentResults);
+                            if(questionCounter == 10 && AllReady == 1) {
+                                //adding points to user's firebase node
+                                mUserRef.child("Score").setValue(Integer.toString(pointCounter));
+
+                                mRef.removeEventListener(this);
+                                extrasRes.putString("UserID", userID);
+                                extrasRes.putString("GameID", gameSessionID);
+
+                                intentResults.putExtras(extrasRes);
+                                startActivity(intentResults);
+                            }
+                            break;
+                        } else if (i == NumOfPlayers && MotherStatus == 0) {
+                            System.out.println("Waiting on Players...");
+                            statusTV.setText("Waiting on Players...");
+
                         }
-                        break;
-                    } else if (i == NumOfPlayers && MotherStatus == 0) {
-                        System.out.println("Waiting on Players...");
-                        statusTV.setText("Waiting on Players...");
-
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Host Ended Game", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getApplicationContext(), IntroPage.class);
+                    startActivity(intent);
                 }
             }
 

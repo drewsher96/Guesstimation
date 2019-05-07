@@ -6,9 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class AdminPage extends AppCompatActivity {
     public static String Extra_Stringh;
     private String hgameID;
+
+    public DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+    public DatabaseReference mGameRef = mRootRef.child("Game");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +28,9 @@ public class AdminPage extends AppCompatActivity {
     }
 
     protected void onStopGame(View v){
-        Intent intent = new Intent(getApplicationContext(), ResultsPage.class);
-        intent.putExtra(Extra_Stringh, hgameID);
+        mGameRef.child(hgameID).setValue(null);
+
+        Intent intent = new Intent(getApplicationContext(), IntroPage.class);
         startActivity(intent);
     }
 }
